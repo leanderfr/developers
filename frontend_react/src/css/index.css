@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -197,13 +198,9 @@ gap: 10px;
 }
 
 .stackSelector {
-display:flex;
-flex-direction: column;
-align-items: start;
-flex-basis:33%;
-flex:1;
-height:100%;
+@apply flex flex-col items-start basis-[33%] grow h-full 
 }
+
 .stackType {
 height: 35px;
 font-weight: bold;
@@ -408,12 +405,7 @@ border: solid 1px navy;
 }
 
 .crudForm {
-width: auto;
-height: auto;
-border: solid 1x gray;
-border-radius: 5px;
-background-color: white;
-display:flex;
+@apply w-auto h-auto border-[1px] border-gray-600 rounded-sm bg-white flex;
 }
 
 

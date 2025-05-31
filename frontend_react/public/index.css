@@ -778,12 +778,12 @@ input:checked + .slider_language:before {
 }
 
 .stackSelector {
-  display:flex;
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-basis: 33%;
   flex-direction: column;
-  align-items: start;
-  flex-basis:33%;
-  flex:1;
-  height:100%;
+  align-items: flex-start;
 }
 
 .stackType {
@@ -996,12 +996,15 @@ input:checked + .slider_language:before {
 }
 
 .crudForm {
-  width: auto;
+  display: flex;
   height: auto;
-  border: solid 1x gray;
-  border-radius: 5px;
-  background-color: white;
-  display:flex;
+  width: auto;
+  border-radius: 0.125rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
 

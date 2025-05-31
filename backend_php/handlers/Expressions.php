@@ -29,7 +29,6 @@ class Expressions
 
     // searchbox empty, filter by status
     else {
-
         if ($status=='active') $sql .= 'and ifnull(active, false)=true';
         else if ($status=='inactive') $sql .= 'and ifnull(active, false)=false';
         else if ($status=='all') $sql .= '';

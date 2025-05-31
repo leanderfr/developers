@@ -21,7 +21,7 @@ import { prepareLoadingAnimation  } from '../js/utils.js';
 export const SharedContext = createContext();
 
 //export const backendUrl = 'http://ec2-54-94-203-105.sa-east-1.compute.amazonaws.com:8071'
-export const backendUrl = 'http://localhost:3001'
+export const backendUrl = 'http://localhost'
 
 function Main() {
 
@@ -29,7 +29,7 @@ function Main() {
   let [isUSAChecked, setUSAChecked, getUSAChecked] = useState(true)
 
   // controla backend atual
-  let [currentBackend, setCurrentBackend] = useState('laravel')
+  let [currentBackend, setCurrentBackend] = useState('php')
 
   // controla item do menu lateral (sidebar) atualmente clicado
   let [currentMenuItem, setCurrentMenuItem] = useState('itemMenuDevelopers')
@@ -57,9 +57,9 @@ function Main() {
 
   const fetchExpressions = async () =>  {
     let _isUSAChecked = getUSAChecked.current
-    let language = _isUSAChecked ? 'english' : 'portuguese';
+    let country = _isUSAChecked ? 'usa' : 'brazil';
 
-    fetch(`${backendUrl}/expressions/${language}`)
+    fetch(`${backendUrl}/expressions/reference/${country}/active`)
     .then((response) => response.json())
     .then((data) => {
       setExpressions(data);

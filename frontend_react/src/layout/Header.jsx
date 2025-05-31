@@ -38,35 +38,39 @@ function Header( props ) {
   return (
     <>
 
-      {/* seletor de front end */}
+      {/* front end selector */}
       <div className={'stackSelector'}>
         <div className={'stackType'} >
           { expressions!=null &&  expressions.frontend }          
         </div>
-        <div className={'stackItemClicked'}> 
+        <div className={'stackItemClicked'} > 
           <div style={{ display:'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
             <img src='images/react2.png' alt='' style={{ width: '30px'}} />
-            <span>React JS</span>
+            <span>React</span>
           </div>
           <div className='gitIcon'>
             <img src='images/git.svg' alt='' style={{ width: '20px'}} />
           </div>  
         </div>
 
+{/*  vue was cancelled 
+
         <div className={'stackItem'}> 
           <div style={{ display:'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
             <img src='images/vue.png' alt='' style={{ width: '30px'}} />
-            <span>Vue JS</span>
+            <span>Vue</span>
           </div>
           <div className='gitIcon'>
             <img src='images/git.svg' alt='' style={{ width: '20px'}} />
           </div>
         </div>
 
+*/}
+
       </div>
 
 
-      {/* seletor de back end */}
+      {/* backend selector */}
       <div className={'stackSelector'}>
         <div className={'stackType'} >
           { expressions!=null &&  expressions.backend }          
@@ -74,7 +78,7 @@ function Header( props ) {
 
         <div className={`${currentBackend === "laravel" ? "stackItemClicked" : "stackItem"}`} onClick={ () => changeBackend('laravel') }   > 
           <div style={{ display:'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
-            <img src='images/laravel.png' alt='' style={{ width: '30px'}} />
+            <img src='images/laravel.png' alt='' style={{ width: '35px'}} />
             <span>Laravel</span>
           </div>
           <div className='gitIcon'>
@@ -84,13 +88,24 @@ function Header( props ) {
 
         <div className={`${currentBackend === "node" ? "stackItemClicked" : "stackItem"}`}    onClick={ () => changeBackend('node') }  > 
           <div style={{ display:'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
-            <img src='images/node.png' alt='' style={{ width: '30px'}} />
+            <img src='images/node.png' alt='' style={{ width: '35px'}} />
             <span>Node.js</span>
           </div>
           <div className='gitIcon'>
             <img src='images/git.svg' alt='' style={{ width: '20px'}} />
           </div>
         </div>
+
+        <div className={`${currentBackend === "php" ? "stackItemClicked" : "stackItem"}`}    onClick={ () => changeBackend('php') }  > 
+          <div style={{ display:'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
+            <img src='images/php.svg' alt='' style={{ width: '35px'}} />
+            <span>PHP</span>
+          </div>
+          <div className='gitIcon'>
+            <img src='images/git.svg' alt='' style={{ width: '20px'}} />
+          </div>
+        </div>
+
       </div>
 
 
