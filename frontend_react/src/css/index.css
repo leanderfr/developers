@@ -1,0 +1,419 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+
+/*********************************************************************************************************************************
+input type='checkbox' em formato de switcher , seletor de idioma 
+*********************************************************************************************************************************/
+
+.switch_language {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 1px;
+}
+
+.switch_language input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider_language {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: lightgray;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+    border: solid 1px transparent;
+}
+
+.slider_language:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white; /* cor da bolinha */
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+
+input:checked + .slider_language {
+    background-color: lightgray;
+}
+
+input:focus + .slider_language {
+    box-shadow: 0 0 1px yellow;
+}
+
+input:checked + .slider_language:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+}
+
+.slider_language.round {
+    border-radius: 30px;
+    height: 30px;
+}
+
+.slider_language.round:before {
+    border-radius: 50%;
+}
+/*********************************************************************************************************************************
+*********************************************************************************************************************************/
+
+#root {
+ height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;;
+  flex:1;
+  background-color: white;
+}
+
+.Content {
+  display: flex;
+  flex-direction: row;
+  width:100vw;
+  height:100vh;
+}
+
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 20%;
+  height:100%;
+  background-color: #2E2E2E;
+  color: lightgray;
+}
+
+.Main {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 80%;
+  flex:1;  
+}
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 110px;
+/*
+  background-color: #88B9EB;*/
+  background-color: white;
+  color: black;
+  border-bottom: solid 1px gray;
+}
+
+.Datatable {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: white;
+  padding:20px;
+}
+
+.ItemMenu {
+font-size: '20px';
+display:flex;
+width:100%;
+justify-content: start;
+padding-left: 20px;
+height:40px;
+margin-top:10px;
+align-items: center;
+align-content: center;
+}
+.ItemMenu:hover {
+font-size: '20px';
+cursor:pointer;
+background-color: #4D4D4D;
+}
+
+.logoReact {
+display: flex;
+flex-direction: column;
+align-items: center;
+width:100%;
+color: #50B7D2;
+border-bottom: solid 1px gray;
+height:110px;
+justify-content: space-around;
+}
+
+/* bandeira país/idioma selecionado escolhida */
+.flagClicked {
+    background-color: #d6e5fc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.countrySelect {
+display: flex;
+flex-direction: row;
+flex-basis: 33%;
+flex:1;
+justify-content: end;
+gap: 10px;
+}
+
+.flagUnclicked {
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+}
+.flagUnclicked:hover {
+    background-color: lightgray;
+}
+
+.stackSelector {
+display:flex;
+flex-direction: column;
+align-items: start;
+flex-basis:33%;
+flex:1;
+height:100%;
+}
+.stackType {
+height: 35px;
+font-weight: bold;
+display: flex;
+align-items: center;
+
+}
+
+.stackItem {
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+gap:10px;
+align-items: center;
+width:70%;
+padding-left: 15px;
+padding-right: 15px;
+height:35px;
+}
+.stackItem:hover {
+cursor: pointer;
+border-radius: 5px;
+background-color: lightgray;
+}
+.stackItemClicked {
+background-color: #d6e5fc;
+border-radius: 5px;
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+gap:10px;
+align-items: center;
+width:70%;
+height:35px;
+padding-left: 15px;
+padding-right: 15px;
+cursor:pointer;
+}
+
+.gitIcon {
+display:flex;
+border: solid 1px transparent;
+width: 30%;
+justify-content: center;
+align-content: center;
+}
+
+
+.gitIcon:hover {
+border: solid 1px gray; 
+border-radius: 5px;
+display:flex;
+}
+
+.backdropTransparent {
+position: absolute;
+background-color: transparent;
+left: 0;
+top: 0;
+  overflow: visible;
+width: 100%;
+height: 100%;
+z-index: 8001;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.backdropGray {
+position: absolute;
+  overflow: visible;
+background-color: rgba(0,0,0,0.1);
+width: 100%;
+height: 100%;
+left: 0;
+top: 0;
+z-index: 8001;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+#divLoading {
+    width: 120px;
+    height: 70px;
+    position: fixed;
+    z-index: 1020999;
+    background: rgba(100, 149, 237, 0.4);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000,endColorstr=#7F000000);
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 29px;
+}
+
+.CrudButtons {
+height:80px;
+display: flex;
+justify-content: space-between;
+}
+
+.CrudButton {
+background-color: #ECECEC;
+color:black;
+width:auto;
+height:30px;
+display: flex;
+justify-content: space-between;
+cursor:pointer;
+align-items: center;
+border-radius: 5px;
+border: solid 1px lightgray;
+font-size:12px;
+}
+.CrudButton:hover {
+background-color:  #d6e5fc;
+}
+
+.searchBox {
+height:90%;
+width:100%;
+background-color: transparent;
+padding-left: 20px;
+border: none;
+}
+
+.searchBox:hover {
+background-color:  transparent;
+border: none;
+cursor:pointer;
+}
+.searchBox:focus {
+background-color: transparent;
+outline:none;
+}
+
+.magnifyingSearch {
+display: flex;
+justify-content: center;
+width: 70px;
+height: 100%; 
+border-left: solid 1px gray; 
+}
+.magnifyingSearch:hover {
+background-color:  #FFC266
+}
+
+.DatatableHeader {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  width: 100%;
+  color: white;
+  height: 40px;
+  align-items: center;
+  padding-left:10px;
+}
+
+.DatatableRows {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  color: black;
+  height: 40px;
+  align-items: center;
+}
+
+.DatatableRow {
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  cursor: pointer;
+  line-height: 40px;
+}
+.DatatableRow:hover {
+background-color:  #FFC266
+}
+.actionColumn {
+display: flex;
+flex-direction: row;
+padding-left: 5px;
+justify-content: space-between;
+align-items: center;
+}
+.actionIcon { 
+border: solid 1px transparent;
+display: flex;
+justify-content: center;
+align-items: center;
+height:100%;
+flex:1;
+}
+.actionIcon:hover { 
+border: solid 1px navy;
+}
+
+.crudForm {
+width: auto;
+height: auto;
+border: solid 1x gray;
+border-radius: 5px;
+background-color: white;
+display:flex;
+}
+
+
