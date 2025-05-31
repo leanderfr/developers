@@ -3,11 +3,11 @@ import '../css/index.css';
 import {  SharedContext } from './Main.jsx';
 
 
-// props= recebe funcoes que fazem a comunicacao entre Header.jsx e Main.jsx
-// se Main.jsx ainda esta carregando dados, exibe Header.jsx com frases e configuracoes em branco/padrao
+// props= receives functions that make the communication between Header.jsx and Main.jsx
+// if Main.jsx still loading data, Header.jsx will be shown with expressions/settings in blank
 function Header( props ) {
 
-  // expressions só poderá ser usada quando Main.jsx enviar seu conteudo diferente de 'null'
+  // expressions will only be available when Main.js sends its expressions content <> null
   let { _expressions, _isUSAChecked, _currentBackend }  = useContext(SharedContext);  
 
   let [isUSAChecked, setUSAChecked] = useState( typeof _isUSAChecked != 'undefined' ? _isUSAChecked : true  )
@@ -15,7 +15,7 @@ function Header( props ) {
 
   let [currentBackend, setCurrentBackend] = useState( typeof _currentBackend != 'undefined' ? _currentBackend : '' )
 
-  // usuario alterou idioma, dispara evento 'onChangeLanguage' em Main.jsx
+  // user changes country, triggers the 'onChangeLanguage' in Main.jsx event
   const changeLanguage = ( isUSAChecked ) => {
     setUSAChecked(isUSAChecked)    // muda visualmente
     setTimeout(() => {
@@ -24,7 +24,7 @@ function Header( props ) {
 
   };
 
-  // usuario alterou idioma, dispara evento 'onChangeLanguage' em Main.jsx
+  // user changes backend, triggers 'onChangeBackend' in Main.jsx event
   const changeBackend = ( backend ) => {
     setCurrentBackend(backend)   // muda visualmente
     setTimeout(() => {
@@ -45,7 +45,7 @@ function Header( props ) {
         </div>
         <div className={'stackItemClicked'} > 
           <div style={{ display:'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
-            <img src='images/react2.png' alt='' style={{ width: '30px'}} />
+            <img src='images/react2.png' alt='' style={{ width: '35px'}} />
             <span>React</span>
           </div>
           <div className='gitIcon'>

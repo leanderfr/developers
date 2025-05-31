@@ -2,10 +2,11 @@
 import { useEffect, createContext  } from 'react';
 
 
-// useState de 'Aminadav Glickshtein' permite 3o parametro para obter estado atual da variavel
-// fazer isso com useState padrao do react é muito complicado
+// useState by 'Aminadav Glickshtein' allows a third parameter to obtain the current state of the variable
+// doing this with React's default useState is complicated
+
 import useState from 'react-usestateref'
-import '../css/index.css';
+import '../css/tailwind_input.css';
 
 import Header from './Header';
 import Datatable from './Datatable';
@@ -25,39 +26,41 @@ export const backendUrl = 'http://localhost'
 
 function Main() {
 
-  // controla se o idioma inglês esta selecionado no momento (via checkbox)
+  // isUSAChecked, USA selected, obvious :-)
   let [isUSAChecked, setUSAChecked, getUSAChecked] = useState(true)
 
-  // controla backend atual
+  // controls current backend (php, node, laravel)
   let [currentBackend, setCurrentBackend] = useState('php')
 
-  // controla item do menu lateral (sidebar) atualmente clicado
+  // controls current left menu sidebar clicked option
   let [currentMenuItem, setCurrentMenuItem] = useState('itemMenuDevelopers')
 
   let [isLoading, setIsLoading] = useState(true)
 
-  // expressoes/frases usadas dependendo do idioma selecionado
+  // expressions used depending on the current country/language
   let [expressions, setExpressions, getExpressions] = useState(null)
   
 
-  // usuario mudou idioma atual em Header.jsx, recarrega 
+  // user changes current country/language in Header.jsx, reloads its dependencies
   const changeLanguageAndReload = ( isUSAChecked ) => {
     setIsLoading(true)
-    setUSAChecked(isUSAChecked)   // define novo idioma que foi recebido de 'Header.jsx'
-    setExpressions(null)   // dispara useEffect 
+    setUSAChecked(isUSAChecked)   // sets new country/language which's been received from 'Header.jsx'
+    setExpressions(null)   // triggers useEffect 
   } 
 
   // usuario mudou backend em header.jsx, recarrega 
   const changeBackendAndReload = ( backend ) => {    
     setCurrentBackend(backend)   
-    setExpressions(null)   // dispara useEffect 
+    setExpressions(null)   // triggers useEffect 
   } 
 
 
-
+  //************************************************************************************************************
+  //************************************************************************************************************
   const fetchExpressions = async () =>  {
     let _isUSAChecked = getUSAChecked.current
     let country = _isUSAChecked ? 'usa' : 'brazil';
+
 
     fetch(`${backendUrl}/expressions/reference/${country}/active`)
     .then((response) => response.json())
@@ -68,17 +71,25 @@ function Main() {
     .catch((error) => console.log('erro='+error));
   }
 
+  //************************************************************************************************************
+  // reload expressions whenever necessary
+  //************************************************************************************************************
   useEffect( () => {      
       prepareLoadingAnimation()  
   
-      // carrega expressoes do idioma atual
-      // força 1/2 segundo de parada para que usuario perceba que esta recarregando
-      // necessario testar de 'expressions' nulo, se nao react executa useEffect sem parar
+      // loads expressions in the current country/language
+      // waits 1/2 second for the user to perceives it's loading
+      // need to test if expressions null, otherwise React runs useEffect non stoping
+
       if ( getExpressions.current == null )    
         setTimeout(() => {
           fetchExpressions()    
         }, 500);
   }, [expressions])
+
+
+  //************************************************************************************************************
+  //************************************************************************************************************  
 
 
   return (
@@ -87,7 +98,7 @@ function Main() {
 
     <div className="Content">
 
-      {/* context => compartilha idioma, expressoes e backend  atual entre os componentes */}
+      {/* context => shares current: country, expressions and country between components */}
       <SharedContext.Provider 
         value={{ 
             _expressions: expressions, 
@@ -95,20 +106,21 @@ function Main() {
             _currentBackend: currentBackend, 
             _currentMenuItem: currentMenuItem  }}  >
 
-          {/* barra lateral esquerda */}
+          {/* left side bar */}
           <div className='Sidebar'>
                 <Sidebar  />
           </div>
 
-          {/* header e datatable */}
+          {/* header and datatable */}
           <div className="Main">
 
               <div className='Header'>
-                {/* se esta carregando expressoes ainda, carrega Header sem dados, só parte visual */}
+                {/* if still loading expressions, loads Header without data, only visual part */}
                 { isLoading && 
                   <Header  /> }
 
                 {/* se ja carregou expressoes, carrega Header com as frases do idiomas atual */}
+                {/* if expressions loaded, load Header with current language expressions */}
                 { expressions && 
                   <Header                 
                     onChangeLanguage={changeLanguageAndReload}                 
@@ -127,7 +139,7 @@ function Main() {
 
     </div>    
 
-    {/* animacao 'carregando...' */}
+    {/* Loading animation */}
     { isLoading && 
         <div className='backdropTransparent' style={{ visibility: isLoading ? 'visible' : 'hidden' }} >
           <div id='divLoading' >&nbsp;</div>

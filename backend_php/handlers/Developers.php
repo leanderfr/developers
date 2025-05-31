@@ -1,46 +1,47 @@
 <?php
 
-class Cars
+class Developers
 {
 
   //***************************************************************************************************************************************
   //***************************************************************************************************************************************
-  
-  public function getCars($status, $searchbox): void   {
 
-    $sql =  "select description, concat('car_', id, '.png') as car_image, id, plate, ifnull(active, false) as active ".
-            "from cars  ".
+  public function getDevelopers(string $status, string $searchbox): void   {
+
+    $sql =  "select id, name, ifnull(active, false) as active ".
+            "from developers  ".
             "where deleted_at is null ";
 
-    // priority is filter whatever came from the searchbox
+    // priority is filter the searchbox
     if ($searchbox!='')  {
-      $sql .= "and trim(description) like trim('%$searchbox%')";
+      $sql .= "and trim(name) like('%$searchbox%')  ";
     } 
 
     // searchbox empty, filter by status
     else {
-
-      if ($status=='active') $sql .= 'and ifnull(active, false)=true';
-      else if ($status=='inactive') $sql .= 'and ifnull(active, false)=false';
-      else if ($status=='all') $sql .= '';
-      else $sql .= ' and 1=2';  // no status received
+        if ($status=='active') $sql .= 'and ifnull(active, false)=true';
+        else if ($status=='inactive') $sql .= 'and ifnull(active, false)=false';
+        else if ($status=='all') $sql .= '';
+        else $sql .= ' and 1=2';  // no status received
     }
 
-    $sql .= ' order by description';
-
-    executeFetchQueryAndReturnJsonResult( $sql, false);
+    $sql .= ' order by name';
+    executeFetchQueryAndReturnJsonResult( $sql, false, false );
   }
 
   //***************************************************************************************************************************************
   //***************************************************************************************************************************************
 
-  public function getCarById($id): void   {
-    $sql =  "select description, concat('car_', id, '.png') as car_image, id, plate, ifnull(active, false) as active ".
-            "from cars  ".
+  public function getDeveloperById($id): void   {
+    $sql =  "select name  ".
+            "from developers  ".
             "where id=$id ";
 
     executeFetchQueryAndReturnJsonResult( $sql, true);
   }
+
+
+
 
 
   //***************************************************************************************************************************************
@@ -48,12 +49,11 @@ class Cars
   public function changeStatus($id): void   {
     global $dbConnection;
 
-
     if (! is_numeric($id)) {
       internalError( 'Not numeric' );
     }
 
-    $crudSql = "update cars set active = if(active, false, true) where id = $id ";
+    $crudSql = "update developers set active = if(active, false, true) where id = $id ";
     $dbConnection -> autocommit(true);    // record without need to transaction
 
     $result = executeCrudQueryAndReturnResult($crudSql, true);    
@@ -66,25 +66,24 @@ class Cars
 
   //***************************************************************************************************************************************
   //***************************************************************************************************************************************
-  public function postOrPatchCar($car_id=''): void   {
+  public function postOrPatchDeveloper($developer_id=''): void   {
     global $dbConnection;
 
-    // update doenst need the car id
-  	if ($car_id!='' && ! is_numeric($car_id))   routeError();
+    // only method PATCH will worry about record id, method POST wont
+  	if ($developer_id!='' && ! is_numeric($developer_id))   routeError();
 
     // verify request
-    $fields = [ ['string', 'description', 5, 50]  ,
-                ['string', 'plate', 5, 10] ];
+    $fields = [ ['string', 'name', 5, 30] 
+              ];
 
-
-    // if it is posting ($car_id==''), get the usual $_POST from php
-    if ($car_id=='')    {
+    // if it is posting ($developer_id==''), get the usual $_POST from php
+    if ($developer_id=='')    {
       $_FIELDS = $_POST;
     }
 
     // otherwise, use the PHP 8.4 request_parse_body() 
     else {
-      [$_FIELDS, $_FILES] = request_parse_body();
+      [$_FIELDS] = request_parse_body();
     }
 
     $dataError = '';
@@ -116,53 +115,29 @@ class Cars
 
     if ($dataError!='') internalError( $dataError );
 
-    $description =   addslashes($_FIELDS['description']);
-    $plate = ($_FIELDS['plate']);
-
-    // is image ok  
-    // the front end already checked if the user chose an image when adding record, what's impeditive to go on
-    // if the users didnt choose an image when updating record, bypass the image recording
-    $bypassImage = true;
-    if ( isset($_FILES['image']['tmp_name']) )  {
-      $imgInfo = getimagesize($_FILES['image']['tmp_name']);
-
-  //    if ($imgInfo === FALSE) 
-  //      internalError( 'File erro');
-
-      if ($imgInfo[2] !== IMAGETYPE_PNG) 
-        internalError( 'Image must be PNG');
-
-      if ($_FILES['image']['size'] > 1500000) 
-        internalError( 'Max size 1.5 MB');
-
-      $bypassImage = false;
-    }    
+    $name =   addslashes($_FIELDS['name']);
 
     // if no ID's been informed, its a POST, new record
-    if ($car_id=='')    {
-      $crudSql = "insert into cars(description, plate, created_at, updated_at, active) ". 
-                "select '$description', '$plate', now(), now(), true "; 
+    if ($developer_id=='')    {
+      $crudSql = "insert into developers(name, created_at, updated_at, active) ". 
+                "select '$name', now(), now(), true "; 
       $dbOperation = 'insert';
     }
 
     // if ID's been informed, its a PATCH, update
     else {
-      $crudSql = "update cars set description='$description', plate='$plate', updated_at=now() ". 
-                "where id = $car_id ";
+      $crudSql = "update developers set name='$name', updated_at=now() ". 
+                "where id = $developer_id ";
       $dbOperation = 'update';
     }
     $dbConnection -> autocommit(true);    // record without need to transaction
 
-    // execute query and get the ID of the just handled record
+    // execute query and get the ID of the just handled expression
     $result = executeCrudQueryAndReturnResult($crudSql, true);    
-    // if it was a POST, obtain the car id  (__success__|record id)
-    if ($car_id=='') {
-      $car_id = explode("|", $result)[1];
-    }
-    // uploads the image to AWS S3
 
-    if (! $bypassImage)      {
-      uploadImageToAWS_S3('image', $car_id);
+    // if it was a POST, obtain the id  (__success__|record id)
+    if ($developer_id=='') {
+      $developer_id = explode("|", $result)[1];
     }
 
     http_response_code(200);   // 200= it was ok
@@ -170,4 +145,6 @@ class Cars
     else die( $result );    // __success__|id registro
 
   }
+
+
 }

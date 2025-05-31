@@ -5,7 +5,7 @@
 $server = 'autogestor.ckv6s00ampaj.us-east-1.rds.amazonaws.com';
 $login = 'admin';
 $password = "Sucesso123#";  
-$database = 'hiring_machine';
+$database = 'developers';
 
 // aws s3 access
 $AWS_S3_APIKEY = 'AKIA5MSUBQX4PGLJV4NH';

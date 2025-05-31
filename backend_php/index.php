@@ -26,6 +26,7 @@ require 'functions.php';
 require __DIR__.'/vendor/autoload.php';
 require "Router.php";
 require "handlers/Expressions.php";  
+require "handlers/Developers.php";  
 
 
 //********************************************************************
@@ -35,6 +36,7 @@ $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 // prepare handlers
 $handlerExpressions = new Expressions;
+$handlerDevelopers = new Developers;
 
 $router = new Router;
 
@@ -58,10 +60,19 @@ if ($getRequest) {
     $handlerExpressions->getExpressions($resultformat, $country, $status, '');
   });
 
-
   $router->Get("/expression/{id}", function($id) use($handlerExpressions)  {  
     $handlerExpressions->getExpressionById($id);
   });
+
+  $router->Get("/developers/{status}/{searchbox}", function($status, $searchbox) use($handlerDevelopers) {  
+    $handlerDevelopers->getDevelopers($status, $searchbox);
+  });
+
+  // no searchbox
+  $router->Get("/developers/{status}", function($status) use($handlerDevelopers) {  
+    $handlerDevelopers->getDevelopers($status, '');
+  });
+
 
 
 

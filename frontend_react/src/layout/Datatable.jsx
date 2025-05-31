@@ -4,38 +4,36 @@ import {  SharedContext, backendUrl } from './Main.jsx';
 import {  useContext, useEffect, Fragment } from 'react';
 import DeveloperForm from './DeveloperForm.jsx'
 
-// useState de 'Aminadav Glickshtein' permite 3o parametro para obter estado atual da variavel
-// fazer isso com useState padrao do react é muito complicado
+// useState by 'Aminadav Glickshtein' allows a third parameter to obtain the current state of the variable
+// doing this with React's default useState is complicated
 import useState from 'react-usestateref'
 
 function Datatable( props ) {
 
   // expressions (frases) no idioma atual e item do menu lateral que foi clicado
+  // get expressions from the current country and current clicked menu item (left side bar)
   let { _expressions, _currentMenuItem }  = useContext(SharedContext);  
 
-  // colunas que serao exibidias dependendo da tabela sendo vista (_currentMenuItem)
+  // columns that will be displayed depending on the table being viewed
   let columns = []
 
-  // manipulando tabela de desenvolvedores 
-  //if (getCurrentTable.current === 'itemMenuDevelopers')
+  // dealing with Developers table
   if (_currentMenuItem === 'itemMenuDevelopers')  
     columns.push({ fieldname: "id", width: "20%", title: 'Id', id: 1 },
                 { fieldname: "name", width: "calc(80% - 150px)", title: _expressions.column_name, id: 2} )
 
-  // ultima coluna, acoes (editar, excluir, etc)
+  // last columns, actions (edit, delete, etc)
   columns.push( {name: 'actions', width: '150px', title: '', id: 3} )
 
-  
-  // registros da tabela atual (_currentMenuItem)
+  // records fetched from the current table (based on _currentMenuItem)
   let [records, setRecords, getRecords] = useState(null)
 
-  // exibe formulario de CRUD 
+  // triggers CRUD form exbibition
   let [calledCrudForm, setCalledCrudForm, getCalledCrudForm] = useState('')
   let [crudFormOperation, setCrudFormOperation, getCrudFormOperation] = useState('')
   let [crudFormRecordId, setCrudFormRecordId, getCrudFormRecordId] = useState('')
 
-
-  // le registros da tabela atual
+  // fetch current datatable records
   const fetchRecords = async () =>  {
     let resourceFetch = ''
     switch (_currentMenuItem) {
@@ -45,7 +43,9 @@ function Datatable( props ) {
       default:
     }
 
-    fetch(`${backendUrl}/${resourceFetch}`, { method: "GET" })
+    let status = 'active'
+
+    fetch(`${backendUrl}/${resourceFetch}/${status}`, { method: "GET" })
     .then((response) => response.json())
     .then((data) => {
       setRecords(data)
@@ -53,50 +53,105 @@ function Datatable( props ) {
     .catch((error) => console.log('erro='+error));
   }
 
-
+  //************************************************************************************************************
+  //************************************************************************************************************
   useEffect( () => {
-      // carrega registros da tabela atual 
-      // força 1/2 segundo de parada para que usuario perceba que esta recarregando
+      // loads records from current table
+      // waits 1/2 second for the user to perceives it's loading
+      // need to test if records null, otherwise React runs useEffect non stoping
       if ( getRecords.current == null )    
         setTimeout(() => {
-          // memoriza qual tabela atual
           fetchRecords()    
         }, 500);
 
   }, [records])
 
-  // chama form para CRUD de alguma tabela 
+
+  //************************************************************************************************************
+  // show CRUD form of a given table
+  //************************************************************************************************************  
   const Crud = ( operation, recordId ) => {
     setCrudFormOperation( operation )
     setCrudFormRecordId( recordId )
     setCalledCrudForm(true)
   }
 
-  // fecha form de Crud
+  //************************************************************************************************************
+  // close displayed CRUD form
+  //************************************************************************************************************  
   const closeCrudForm = event => {
     setCalledCrudForm(false)
   }
 
+
+  //************************************************************************************************************
+  //************************************************************************************************************  
+
   return (
     <>
-    <div className="CrudButtons">
 
-        {/* botao= pesquisar nome */}
-        <div className="CrudButton" style={{ _paddingRight:'20px' }} >
-          <div style={{width: '200px', height: '100%' }}>
-              { _expressions !=null && <input type='text' className='searchBox' placeholder={_expressions.searchname } /> }
-          </div>
-          <div className='magnifyingSearch'  >
-              <img src='images/magnifying.svg' alt='' style={{ width:'20px' }}></img>
-          </div>
+
+
+      <div className='datatableTitle' >
+        <div className='flex flex-row w-full'>
+
+            <!--  search box --> 
+            <div className="flex flex-col" >  
+              <input type="text" className='txtTABLE_SEARCHBOX'  id='txtTableSearchText'  autocomplete="off" 
+                  @focus='showTipSearchbox=true' 
+                  @blur='showTipSearchbox=false' 
+                  @mouseenter="focusSearchBox" />
+
+              <div className="flex flex-row pt-1 text-xs"  >  
+                  <div v-if="showTipSearchbox">
+                    <span className="text-blue-900 font-bold">Enter</span>
+                    <span className="text-black">= {{ expressions.search_verb }}</span>
+                  </div>
+                  <div v-else>&nbsp;</div> 
+              </div>
+
+              <button id='triggerSearchBox' v-show="false" @click='fetchData()'></button>
+            </div>
+
+            <!-- button to reset filter --> 
+            <div id='btnResetTextTableFilter'  className='putPrettierTooltip' :title="expressions.reset_filter"
+                :className="filterApplied ? 'btnTABLE_CANCEL_FILTER_ACTIVE' : 'btnTABLE_CANCEL_FILTER_INACTIVE'"
+                @click="forceHideTolltip();clearFilter()"  aria-hidden="true">
+            </div> 
+          
         </div>
 
-        {/* botao= novo registro */}
-        <div className="CrudButton" style={{ paddingLeft:'20px', paddingRight:'20px', gap: '15px' }}    >
-          <div><img src='images/add.svg' alt='' style={{ width:'22px' }}></img></div>
-          <div><span>{ _expressions!=null && _expressions.addrecord }</span> </div>
+        <!-- action buttons -->
+        <div className=' flex flex-row items-start  h-full gap-5 pt-3 '>
+
+          <div v-if="currentStatus=='active'" className='btnTABLE_ONLY_ACTIVE_RECORDS_ON putPrettierTooltip' 
+                  :title="expressions.only_active" 
+                  @click="forceHideTolltip();currentStatus=''" 
+                  aria-hidden="true"></div>   
+
+          <div v-else className='btnTABLE_ONLY_ACTIVE_RECORDS_OFF putPrettierTooltip' 
+                :title="expressions.only_active" 
+                @click="forceHideTolltip();currentStatus='active'" 
+                aria-hidden="true"></div>   
+
+          <div v-if="currentStatus=='inactive'" className='btnTABLE_ONLY_INACTIVE_RECORDS_ON putPrettierTooltip' 
+                :title="expressions.only_inactive" 
+                @click="forceHideTolltip();currentStatus=''" 
+                aria-hidden="true"></div>   
+
+          <div v-else className='btnTABLE_ONLY_INACTIVE_RECORDS_OFF putPrettierTooltip' 
+              :title="expressions.only_inactive" 
+                  @click="forceHideTolltip();currentStatus='inactive'" 
+              aria-hidden="true"></div>   
+
+          <div  className='btnTABLE_NEW_RECORD putPrettierTooltip' :title="expressions.add_record" @click="editForm();" aria-hidden="true"></div>   
+
+
         </div>
-    </div>
+      </div>
+
+
+
 
 
     {/* looping para exibir cada coluna baseado na tabela atual */}
