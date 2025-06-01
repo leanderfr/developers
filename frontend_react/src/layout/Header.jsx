@@ -1,6 +1,8 @@
 import { useState, useContext } from 'react';
 import {  SharedContext } from './Main.jsx';
 
+import '../tailwind_output.css'   
+
 
 // props= receives functions that make the communication between Header.jsx and Main.jsx
 // if Main.jsx still loading data, Header.jsx will be shown with expressions/settings in blank

@@ -4,7 +4,11 @@ import {Spinner} from 'spin.js';
 import $ from 'jquery'
 
 
+//******************************************************************************
+// put jscript action in the loading div
+//******************************************************************************
 export const prepareLoadingAnimation = () =>  {
+
     // react exibe/remove animacao ajax, necessario refazer propriedades da animacao sempre que for reexibida (useEffect)
     var opts = {
       lines: 12 // The number of lines to draw
@@ -36,13 +40,12 @@ export const prepareLoadingAnimation = () =>  {
 }
 
 
-
 //******************************************************************************
 // improve the look of the title atribute (mouse hover an element)
 // thanx jquery for this
 // elements that have 'putPrettierTooltip' class will be affected
 //******************************************************************************
-export const improveTooltipLook = () => {
+export const improveToolTipLook = () => {
 
   setTimeout( () => {
     // define tooltip of top buttons
@@ -56,6 +59,7 @@ export const improveTooltipLook = () => {
     }
 
   }, 500)    
+
 }
 
 

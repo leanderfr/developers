@@ -2,7 +2,9 @@
 import {  SharedContext, backendUrl } from './Main.jsx';
 import {  useContext, useEffect, Fragment } from 'react';
 import DeveloperForm from './DeveloperForm.jsx'
-import { improveTooltipLook, forceHideToolTip  } from '../js/utils.js';
+import { improveToolTipLook, forceHideToolTip  } from '../js/utils.js';
+
+import '../tailwind_output.css'   
 
 // useState by 'Aminadav Glickshtein' allows a third parameter to obtain the current state of the variable
 // doing this with React's default useState is complicated
@@ -40,43 +42,44 @@ function Datatable( props ) {
   let [filterApplied, setFilterApplied, getFilterApplied] = useState(false)
   let [showTipSearchbox, setShowTipSearchbox, getShowTipSearchbox] = useState(false) 
 
-
-
   
 
   //*****************************************************************************
   // fetch current datatable records
   //*****************************************************************************
-  const fetchRecords = async () =>  {
-    let resourceFetch = ''
-    switch (_currentMenuItem) {
-      case 'itemMenuDevelopers':
-        resourceFetch = 'developers'
-        break;
-      default:
-    }
-
-    let status = 'active'
-
-    fetch(`${backendUrl}/${resourceFetch}/${status}`, { method: "GET" })
-    .then((response) => response.json())
-    .then((data) => {
-      setRecords(data)
-    })
-    .catch((error) => console.log('erro='+error));
-  }
+  
 
   //************************************************************************************************************
   // prepare trigger to (re)fetch records whenever needed
   //************************************************************************************************************
   useEffect( () => {
+      const fetchRecords = async () =>  {
+        let resourceFetch = ''
+        switch (_currentMenuItem) {
+          case 'itemMenuDevelopers':
+            resourceFetch = 'developers'
+            break;
+          default:
+        }
+        
+        let status = 'active'
+
+        fetch(`${backendUrl}/${resourceFetch}/${status}`, { method: "GET" })
+        .then((response) => response.json())
+        .then((data) => {
+          props.setIsLoading(false)
+          setRecords(data)
+        })
+        .catch((error) => {props.setIsLoading(false); console.log('erro='+error)} );
+      }
+
       // loads records from current table
       // waits 1/2 second for the user to perceives it's loading
       // need to test if records null, otherwise React runs useEffect non stoping
-      if ( getRecords.current == null )    
-        setTimeout(() => {
-          fetchRecords()    
-        }, 500);
+      if ( getRecords.current == null )     {
+        props.setIsLoading(true)
+        fetchRecords()    
+      }
 
   }, [records])
 
@@ -84,7 +87,7 @@ function Datatable( props ) {
   // initial preparation, run only once
   //************************************************************************************************************
   useEffect( () => {
-  improveTooltipLook()
+    improveToolTipLook()
   }, [])
 
 
@@ -153,7 +156,7 @@ function Datatable( props ) {
               </div>
 
               {/* hidden button that triggers the search when the user press Enter */}
-              <button id='triggerSearchBox' style={{ visibily: 'hidden' }} onClick={fetchRecords}></button> 
+              <button id='triggerSearchBox' style={{ visibily: 'hidden' }} onClick={() => {setRecords(null)}} ></button> 
             </div>
 
             {/* -- button to reset filter --*/}
@@ -259,6 +262,7 @@ function Datatable( props ) {
                 operation={getCrudFormOperation.current} 
                 recordId={getCrudFormRecordId.current}
                 closeCrudForm = {closeCrudForm}
+                setIsLoading={props.setIsLoading}
             />
     }
     

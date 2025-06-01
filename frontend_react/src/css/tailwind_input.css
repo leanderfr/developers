@@ -4,14 +4,15 @@
 @tailwind utilities;
 
 
-body {
+html {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
   margin: 0;
-  overflow: visible;
+  overflow: hidden !important;
 }
+
 
 
 /*********************************************************************************************************************************
@@ -427,7 +428,7 @@ border: solid 1px navy;
 }
 
 .txtTABLE_SEARCHBOX:focus {
-    @apply bg-[#ebf6f9];
+    @apply bg-[#ebf6f9]; 
 }
 
 

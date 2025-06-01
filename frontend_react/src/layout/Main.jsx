@@ -1,7 +1,6 @@
 
 import { useEffect, createContext  } from 'react';
 
-
 // useState by 'Aminadav Glickshtein' allows a third parameter to obtain the current state of the variable
 // doing this with React's default useState is complicated
 
@@ -16,7 +15,7 @@ import $ from 'jquery'
 import 'jquery-ui-bundle';
 import 'jquery-ui-bundle/jquery-ui.min.css';
 
-import { prepareLoadingAnimation, improveTooltipLook  } from '../js/utils.js';
+import { prepareLoadingAnimation  } from '../js/utils.js';
 
 export const SharedContext = createContext();
 
@@ -74,8 +73,6 @@ function Main() {
   // reload expressions whenever necessary
   //************************************************************************************************************
   useEffect( () => {      
-      prepareLoadingAnimation()  
-  
       // loads expressions in the current country/language
       // waits 1/2 second for the user to perceives it's loading
       // need to test if expressions null, otherwise React runs useEffect non stoping
@@ -85,6 +82,14 @@ function Main() {
           fetchExpressions()    
         }, 500);
   }, [expressions])
+
+
+//************************************************************************************************************
+  // reload expressions whenever necessary
+  //************************************************************************************************************
+  useEffect( () => {      
+      prepareLoadingAnimation()  
+  }, [])
 
 
   //************************************************************************************************************
@@ -115,8 +120,6 @@ function Main() {
 
               <div className='Header'>
                 {/* if still loading expressions, loads Header without data, only visual part */}
-                { isLoading && 
-                  <Header  /> }
 
                 {/* se ja carregou expressoes, carrega Header com as frases do idiomas atual */}
                 {/* if expressions loaded, load Header with current language expressions */}
@@ -129,7 +132,7 @@ function Main() {
               </div>
 
               <div className='Datatable'>
-                { expressions && <Datatable   /> }
+                { expressions && <Datatable setIsLoading={setIsLoading}  /> }
               </div>
 
           </div>
@@ -139,11 +142,9 @@ function Main() {
     </div>    
 
     {/* Loading animation */}
-    { isLoading && 
         <div className='backdropTransparent' style={{ visibility: isLoading ? 'visible' : 'hidden' }} >
           <div id='divLoading' >&nbsp;</div>
         </div>
-    }
 
     </>
 
