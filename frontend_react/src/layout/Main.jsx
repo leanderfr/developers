@@ -6,7 +6,6 @@ import { useEffect, createContext  } from 'react';
 // doing this with React's default useState is complicated
 
 import useState from 'react-usestateref'
-import '../css/tailwind_input.css';
 
 import Header from './Header';
 import Datatable from './Datatable';
@@ -17,7 +16,7 @@ import $ from 'jquery'
 import 'jquery-ui-bundle';
 import 'jquery-ui-bundle/jquery-ui.min.css';
 
-import { prepareLoadingAnimation  } from '../js/utils.js';
+import { prepareLoadingAnimation, improveTooltipLook  } from '../js/utils.js';
 
 export const SharedContext = createContext();
 

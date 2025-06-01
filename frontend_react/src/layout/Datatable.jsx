@@ -1,12 +1,14 @@
 
-import '../css/index.css';
 import {  SharedContext, backendUrl } from './Main.jsx';
 import {  useContext, useEffect, Fragment } from 'react';
 import DeveloperForm from './DeveloperForm.jsx'
+import { improveTooltipLook, forceHideToolTip  } from '../js/utils.js';
 
 // useState by 'Aminadav Glickshtein' allows a third parameter to obtain the current state of the variable
 // doing this with React's default useState is complicated
 import useState from 'react-usestateref'
+
+import $ from 'jquery'
 
 function Datatable( props ) {
 
@@ -33,7 +35,18 @@ function Datatable( props ) {
   let [crudFormOperation, setCrudFormOperation, getCrudFormOperation] = useState('')
   let [crudFormRecordId, setCrudFormRecordId, getCrudFormRecordId] = useState('')
 
+  let [currentStatus, setCurrentStatus, getCurrentStatus] = useState('')
+
+  let [filterApplied, setFilterApplied, getFilterApplied] = useState(false)
+  let [showTipSearchbox, setShowTipSearchbox, getShowTipSearchbox] = useState(false) 
+
+
+
+  
+
+  //*****************************************************************************
   // fetch current datatable records
+  //*****************************************************************************
   const fetchRecords = async () =>  {
     let resourceFetch = ''
     switch (_currentMenuItem) {
@@ -54,6 +67,7 @@ function Datatable( props ) {
   }
 
   //************************************************************************************************************
+  // prepare trigger to (re)fetch records whenever needed
   //************************************************************************************************************
   useEffect( () => {
       // loads records from current table
@@ -65,6 +79,14 @@ function Datatable( props ) {
         }, 500);
 
   }, [records])
+
+  //************************************************************************************************************
+  // initial preparation, run only once
+  //************************************************************************************************************
+  useEffect( () => {
+  improveTooltipLook()
+  }, [])
+
 
 
   //************************************************************************************************************
@@ -83,6 +105,21 @@ function Datatable( props ) {
     setCalledCrudForm(false)
   }
 
+  //*****************************************************************************
+  //*****************************************************************************
+  const clearFilter = () => {
+    $('#txtTableSearchText').val('');
+    setFilterApplied(false)
+  }
+
+  //*****************************************************************************
+  // if users hovers mouse over search box, put the focus in it 
+  //*****************************************************************************
+  const focusSearchBox = (e) => {
+    if (! $(e.target).is(':focus') ) $(e.target).focus()
+  }
+
+
 
   //************************************************************************************************************
   //************************************************************************************************************  
@@ -91,61 +128,83 @@ function Datatable( props ) {
     <>
 
 
-
-      <div className='datatableTitle' >
+      <div className='DatatableTitle' >
         <div className='flex flex-row w-full'>
 
-            <!--  search box --> 
+            {/* --  search box -- */}
             <div className="flex flex-col" >  
-              <input type="text" className='txtTABLE_SEARCHBOX'  id='txtTableSearchText'  autocomplete="off" 
-                  @focus='showTipSearchbox=true' 
-                  @blur='showTipSearchbox=false' 
-                  @mouseenter="focusSearchBox" />
+              <input type="text" className='txtTABLE_SEARCHBOX'  id='txtTableSearchText'  autoComplete="off" 
+                  onFocus={() => { setShowTipSearchbox(true)   }}
+                  onBlur={() => { setShowTipSearchbox(false)   }}
+                  onMouseEnter={focusSearchBox} />
 
               <div className="flex flex-row pt-1 text-xs"  >  
-                  <div v-if="showTipSearchbox">
-                    <span className="text-blue-900 font-bold">Enter</span>
-                    <span className="text-black">= {{ expressions.search_verb }}</span>
-                  </div>
-                  <div v-else>&nbsp;</div> 
+                  { showTipSearchbox ? 
+                    (
+                    <div v-if="showTipSearchbox">
+                      <span className="text-blue-900 font-bold">Enter</span>
+                      <span className="text-black">= { _expressions.search_verb }</span>
+                    </div>
+                    )  :   
+                    (
+                      <div>&nbsp;</div>  
+                    ) 
+                  }
               </div>
 
-              <button id='triggerSearchBox' v-show="false" @click='fetchData()'></button>
+              {/* hidden button that triggers the search when the user press Enter */}
+              <button id='triggerSearchBox' style={{ visibily: 'hidden' }} onClick={fetchRecords}></button> 
             </div>
 
-            <!-- button to reset filter --> 
-            <div id='btnResetTextTableFilter'  className='putPrettierTooltip' :title="expressions.reset_filter"
-                :className="filterApplied ? 'btnTABLE_CANCEL_FILTER_ACTIVE' : 'btnTABLE_CANCEL_FILTER_INACTIVE'"
-                @click="forceHideTolltip();clearFilter()"  aria-hidden="true">
+            {/* -- button to reset filter --*/}
+            <div id='btnResetTextTableFilter'  title={_expressions.reset_filter} 
+                className={`putPrettierTooltip ${filterApplied.current ? 'btnTABLE_CANCEL_FILTER_ACTIVE' : 'btnTABLE_CANCEL_FILTER_INACTIVE'}` }
+                onClick={ () => {forceHideToolTip();clearFilter()} } >
             </div> 
           
         </div>
 
-        <!-- action buttons -->
+        {/* -- action buttons --*/}
         <div className=' flex flex-row items-start  h-full gap-5 pt-3 '>
 
-          <div v-if="currentStatus=='active'" className='btnTABLE_ONLY_ACTIVE_RECORDS_ON putPrettierTooltip' 
-                  :title="expressions.only_active" 
-                  @click="forceHideTolltip();currentStatus=''" 
-                  aria-hidden="true"></div>   
+          {/* show/hide active records --*/}
+          { getCurrentStatus.current==='active'  ? 
+            (
+              <div className='btnTABLE_ONLY_ACTIVE_RECORDS_ON putPrettierTooltip' 
+                  title={_expressions.only_active} 
+                  onClick = {() => {forceHideToolTip();setCurrentStatus('')}}
+                  aria-hidden="true">
+              </div>   
+            ) :
+            (
+              <div className='btnTABLE_ONLY_ACTIVE_RECORDS_OFF putPrettierTooltip' 
+                   title={_expressions.only_active}
+                   onClick={ () => {forceHideToolTip();setCurrentStatus('active')} }
+                   aria-hidden="true">
+              </div>   
+            )
+          }
 
-          <div v-else className='btnTABLE_ONLY_ACTIVE_RECORDS_OFF putPrettierTooltip' 
-                :title="expressions.only_active" 
-                @click="forceHideTolltip();currentStatus='active'" 
-                aria-hidden="true"></div>   
+          {/* show/hide inactive records --*/}
+          { getCurrentStatus.current==='inactive'  ?
+            (
+              <div className='btnTABLE_ONLY_INACTIVE_RECORDS_ON putPrettierTooltip' 
+                  title={_expressions.only_inactive} 
+                  onClick = {() => {forceHideToolTip();setCurrentStatus('')}}
+                  aria-hidden="true">
+              </div>   
+            ) :
+            (
+              <div className='btnTABLE_ONLY_INACTIVE_RECORDS_OFF putPrettierTooltip' 
+                   title={_expressions.only_inactive}
+                   onClick={ () => {forceHideToolTip();setCurrentStatus('inactive')} }
+                   aria-hidden="true">
+              </div>   
+            )
+          }
 
-          <div v-if="currentStatus=='inactive'" className='btnTABLE_ONLY_INACTIVE_RECORDS_ON putPrettierTooltip' 
-                :title="expressions.only_inactive" 
-                @click="forceHideTolltip();currentStatus=''" 
-                aria-hidden="true"></div>   
-
-          <div v-else className='btnTABLE_ONLY_INACTIVE_RECORDS_OFF putPrettierTooltip' 
-              :title="expressions.only_inactive" 
-                  @click="forceHideTolltip();currentStatus='inactive'" 
-              aria-hidden="true"></div>   
-
-          <div  className='btnTABLE_NEW_RECORD putPrettierTooltip' :title="expressions.add_record" @click="editForm();" aria-hidden="true"></div>   
-
+          {/* -- new record --*/}
+          <div  className='btnTABLE_NEW_RECORD putPrettierTooltip' title={_expressions.add_record} aria-hidden="true"></div>   
 
         </div>
       </div>

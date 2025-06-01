@@ -1,0 +1,1416 @@
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+/*
+! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  /* 3 */
+  tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-feature-settings: normal;
+  /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.top-40 {
+  top: 10rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.table {
+  display: table;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.text-blue-900 {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity, 1));
+}
+
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+/*********************************************************************************************************************************
+input type='checkbox' em formato de switcher , seletor de idioma 
+*********************************************************************************************************************************/
+
+.switch_language {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.switch_language input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider_language {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  transition: 0.1s;
+  border: solid 1px transparent;
+}
+
+.slider_language:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  /* cor da bolinha */
+  transition: 0.1s;
+}
+
+input:checked + .slider_language {
+  background-color: lightgray;
+}
+
+input:focus + .slider_language {
+  box-shadow: 0 0 1px yellow;
+}
+
+input:checked + .slider_language:before {
+  transform: translateX(24px);
+}
+
+.slider_language.round {
+  border-radius: 30px;
+  height: 30px;
+}
+
+.slider_language.round:before {
+  border-radius: 50%;
+}
+
+/*********************************************************************************************************************************
+*********************************************************************************************************************************/
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  background-color: white;
+}
+
+.Content {
+  display: flex;
+  flex-direction: row;
+  width:100vw;
+  height:100vh;
+}
+
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 20%;
+  height:100%;
+  background-color: #2E2E2E;
+  color: lightgray;
+}
+
+.Main {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 80%;
+  flex:1;
+}
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 110px;
+  /*
+  background-color: #88B9EB;*/
+  background-color: white;
+  color: black;
+  border-bottom: solid 1px gray;
+}
+
+.Datatable {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: white;
+  padding:20px;
+}
+
+.ItemMenu {
+  font-size: '20px';
+  display:flex;
+  width:100%;
+  justify-content: start;
+  padding-left: 20px;
+  height:40px;
+  margin-top:10px;
+  align-items: center;
+  align-content: center;
+}
+
+.ItemMenu:hover {
+  font-size: '20px';
+  cursor:pointer;
+  background-color: #4D4D4D;
+}
+
+.logoReact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+  color: #50B7D2;
+  border-bottom: solid 1px gray;
+  height:110px;
+  justify-content: space-around;
+}
+
+/* bandeira país/idioma selecionado escolhida */
+
+.flagClicked {
+  background-color: #d6e5fc;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.countrySelect {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 33%;
+  flex:1;
+  justify-content: end;
+  gap: 10px;
+}
+
+.flagUnclicked {
+  background-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.flagUnclicked:hover {
+  background-color: lightgray;
+}
+
+.stackSelector {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-basis: 33%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stackType {
+  height: 35px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.stackItem {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap:10px;
+  align-items: center;
+  width:70%;
+  padding-left: 15px;
+  padding-right: 15px;
+  height:35px;
+}
+
+.stackItem:hover {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+.stackItemClicked {
+  background-color: #d6e5fc;
+  border-radius: 5px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap:10px;
+  align-items: center;
+  width:70%;
+  height:35px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor:pointer;
+}
+
+.gitIcon {
+  display:flex;
+  border: solid 1px transparent;
+  width: 30%;
+  justify-content: center;
+  align-content: center;
+}
+
+.gitIcon:hover {
+  border: solid 1px gray;
+  border-radius: 5px;
+  display:flex;
+}
+
+.backdropTransparent {
+  position: absolute;
+  background-color: transparent;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  z-index: 8001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backdropGray {
+  position: absolute;
+  overflow: visible;
+  background-color: rgba(0,0,0,0.1);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 8001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#divLoading {
+  width: 120px;
+  height: 70px;
+  position: fixed;
+  z-index: 1020999;
+  background: rgba(100, 149, 237, 0.4);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000,endColorstr=#7F000000);
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 29px;
+}
+
+.CrudButtons {
+  height:80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.CrudButton {
+  background-color: #ECECEC;
+  color:black;
+  width:auto;
+  height:30px;
+  display: flex;
+  justify-content: space-between;
+  cursor:pointer;
+  align-items: center;
+  border-radius: 5px;
+  border: solid 1px lightgray;
+  font-size:12px;
+}
+
+.CrudButton:hover {
+  background-color:  #d6e5fc;
+}
+
+.searchBox {
+  height:90%;
+  width:100%;
+  background-color: transparent;
+  padding-left: 20px;
+  border: none;
+}
+
+.searchBox:hover {
+  background-color:  transparent;
+  border: none;
+  cursor:pointer;
+}
+
+.searchBox:focus {
+  background-color: transparent;
+  outline:none;
+}
+
+.magnifyingSearch {
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  height: 100%;
+  border-left: solid 1px gray;
+}
+
+.magnifyingSearch:hover {
+  background-color:  #FFC266
+}
+
+.DatatableHeader {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  width: 100%;
+  color: white;
+  height: 40px;
+  align-items: center;
+  padding-left:10px;
+}
+
+.DatatableRows {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  color: black;
+  height: 40px;
+  align-items: center;
+}
+
+.DatatableRow {
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  cursor: pointer;
+  line-height: 40px;
+}
+
+.DatatableRow:hover {
+  background-color:  #FFC266
+}
+
+.DatatableTitle {
+  height: 80px;
+  font-size: 25px  ;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  padding-left:10px;
+}
+
+.actionColumn {
+  display: flex;
+  flex-direction: row;
+  padding-left: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionIcon {
+  border: solid 1px transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  flex:1;
+}
+
+.actionIcon:hover {
+  border: solid 1px navy;
+}
+
+.crudForm {
+  display: flex;
+  height: auto;
+  width: auto;
+  border-radius: 0.125rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+/* searchBox => textbox to search  , magnifying icon at the right corner */
+
+.txtTABLE_SEARCHBOX {
+  /* magnifying-icon is defined in tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 400px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='lightgray'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path fill-rule='evenodd' clip-rule='evenodd' d='M17.0392 15.6244C18.2714 14.084 19.0082 12.1301 19.0082 10.0041C19.0082 5.03127 14.9769 1 10.0041 1C5.03127 1 1 5.03127 1 10.0041C1 14.9769 5.03127 19.0082 10.0041 19.0082C12.1301 19.0082 14.084 18.2714 15.6244 17.0392L21.2921 22.707C21.6828 23.0977 22.3163 23.0977 22.707 22.707C23.0977 22.3163 23.0977 21.6828 22.707 21.2921L17.0392 15.6244ZM10.0041 17.0173C6.1308 17.0173 2.99087 13.8774 2.99087 10.0041C2.99087 6.1308 6.1308 2.99087 10.0041 2.99087C13.8774 2.99087 17.0173 6.1308 17.0173 10.0041C17.0173 13.8774 13.8774 17.0173 10.0041 17.0173Z' fill='lightgray'></path> </g></svg>");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  padding: 6px 10px 6px 10px;
+}
+
+.txtTABLE_SEARCHBOX:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+}
+
+.txtTABLE_SEARCHBOX:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 246 249 / var(--tw-bg-opacity, 1));
+}
+
+/* prettier tooltip to highlight buttons */
+
+.prettierTitle_black {
+  background-color: #333333 !important;
+  border-color: #333333 !important ;
+  border-bottom-left-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+  border-top-left-radius: 6px !important;
+  border-top-right-radius: 6px !important;
+  color: white !important;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 13px !important;
+  line-height: 15px !important;
+  white-space: nowrap !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  position: relative !important;
+  display: inline-block !important;
+  z-index: 1000004 !important;
+}
+
+/****************************************************************************
+buttons
+****************************************************************************/
+
+button.btnCANCEL {
+  height: 30px;
+  width: 150px;
+  cursor: pointer;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+  background-image: url("data:image/svg+xml,<svg width='18px' height='18px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='black'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>cancel</title> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='work-case' fill='black' transform='translate(91.520000, 91.520000)'> <polygon id='Close' points='328.96 30.2933333 298.666667 1.42108547e-14 164.48 134.4 30.2933333 1.42108547e-14 1.42108547e-14 30.2933333 134.4 164.48 1.42108547e-14 298.666667 30.2933333 328.96 164.48 194.56 298.666667 328.96 328.96 298.666667 194.56 164.48'> </polygon> </g> </g> </g></svg>");
+  background-size: auto;
+  background-position: left 10px center;
+  background-repeat: no-repeat;
+  padding-top: 2px;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+button.btnCANCEL:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+}
+
+button.btnSAVE {
+  /* icon-button-save is defined in tailwind.config.js */
+  height: 30px;
+  width: 170px;
+  cursor: pointer;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+  background-image: url("data:image/svg+xml,<svg width='18px' height='18px' viewBox='0 -2 18 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='white'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>action / 5 - action, check, checkmark, ok icon</title> <g id='Free-Icons' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' stroke-linecap='round' stroke-linejoin='round'> <g transform='translate(-452.000000, -85.000000)' id='Group' stroke='white' stroke-width='2'> <g transform='translate(449.000000, 80.000000)' id='Shape'> <polyline points='4 10.5711735 10.2222222 18 20 6'> </polyline> </g> </g> </g> </g></svg>");
+  background-size: auto;
+  background-position: left 10px center;
+  background-repeat: no-repeat;
+  padding-top: 2px;
+  padding-left: 2.25rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+button.btnSAVE:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(69 10 10 / var(--tw-border-opacity, 1));
+}
+
+button.btnUPLOAD {
+  /* icon-button-upload is defined in tailwind.config.js */
+  height: 30px;
+  width: 170px;
+  cursor: pointer;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+  background-image: url("data:image/svg+xml,<svg width='18px' height='18px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M18.22 20.75H5.78C5.43322 20.7359 5.09262 20.6535 4.77771 20.5075C4.4628 20.3616 4.17975 20.155 3.94476 19.8996C3.70977 19.6442 3.52745 19.3449 3.40824 19.019C3.28903 18.693 3.23525 18.3468 3.25 18V15C3.25 14.8011 3.32902 14.6103 3.46967 14.4697C3.61033 14.329 3.80109 14.25 4 14.25C4.19892 14.25 4.38968 14.329 4.53033 14.4697C4.67099 14.6103 4.75 14.8011 4.75 15V18C4.72419 18.2969 4.81365 18.5924 4.99984 18.8251C5.18602 19.0579 5.45465 19.21 5.75 19.25H18.22C18.5154 19.21 18.784 19.0579 18.9702 18.8251C19.1564 18.5924 19.2458 18.2969 19.22 18V15C19.22 14.8011 19.299 14.6103 19.4397 14.4697C19.5803 14.329 19.7711 14.25 19.97 14.25C20.1689 14.25 20.3597 14.329 20.5003 14.4697C20.641 14.6103 20.72 14.8011 20.72 15V18C20.75 18.6954 20.5041 19.3744 20.0359 19.8894C19.5677 20.4045 18.9151 20.7137 18.22 20.75Z' fill='black'></path> <path d='M16 8.74995C15.9015 8.75042 15.8038 8.7312 15.7128 8.69342C15.6218 8.65564 15.5392 8.60006 15.47 8.52995L12 5.05995L8.53 8.52995C8.38782 8.66243 8.19978 8.73455 8.00548 8.73113C7.81118 8.7277 7.62579 8.64898 7.48838 8.51157C7.35096 8.37416 7.27225 8.18877 7.26882 7.99447C7.2654 7.80017 7.33752 7.61213 7.47 7.46995L11.47 3.46995C11.6106 3.3295 11.8012 3.25061 12 3.25061C12.1987 3.25061 12.3894 3.3295 12.53 3.46995L16.53 7.46995C16.6705 7.61058 16.7493 7.8012 16.7493 7.99995C16.7493 8.1987 16.6705 8.38932 16.53 8.52995C16.4608 8.60006 16.3782 8.65564 16.2872 8.69342C16.1962 8.7312 16.0985 8.75042 16 8.74995Z' fill='black'></path> <path d='M12 15.75C11.8019 15.7474 11.6126 15.6676 11.4725 15.5275C11.3324 15.3874 11.2526 15.1981 11.25 15V4C11.25 3.80109 11.329 3.61032 11.4697 3.46967C11.6103 3.32902 11.8011 3.25 12 3.25C12.1989 3.25 12.3897 3.32902 12.5303 3.46967C12.671 3.61032 12.75 3.80109 12.75 4V15C12.7474 15.1981 12.6676 15.3874 12.5275 15.5275C12.3874 15.6676 12.1981 15.7474 12 15.75Z' fill='black'></path> </g></svg>");
+  background-size: auto;
+  background-position: left 10px center;
+  background-repeat: no-repeat;
+  padding-top: 2px;
+  padding-left: 2.25rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+button.btnUPLOAD:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+}
+
+button.btnDELETE {
+  /* icon-button-delete is defined in tailwind.config.js */
+  height: 30px;
+  width: auto;
+  min-width: 150px;
+  cursor: pointer;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+  background-image: url("data:image/svg+xml,<svg width='24px' height='24px' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='white'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>cancel</title> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='work-case' fill='white' transform='translate(91.520000, 91.520000)'> <polygon id='Close' points='328.96 30.2933333 298.666667 1.42108547e-14 164.48 134.4 30.2933333 1.42108547e-14 1.42108547e-14 30.2933333 134.4 164.48 1.42108547e-14 298.666667 30.2933333 328.96 164.48 194.56 298.666667 328.96 328.96 298.666667 194.56 164.48'> </polygon> </g> </g> </g></svg>");
+  background-size: auto;
+  background-position: left 10px center;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 2px;
+  padding-left: 2.25rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+button.btnDELETE:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(69 10 10 / var(--tw-border-opacity, 1));
+}
+
+.btnTABLE_NEW_RECORD {
+  /* icon-new-record is defined in tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg fill='navy' width='34px' height='34px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'><path d='M4,23H20a1,1,0,0,0,1-1V6a1,1,0,0,0-.293-.707l-4-4A1,1,0,0,0,16,1H4A1,1,0,0,0,3,2V22A1,1,0,0,0,4,23ZM5,3H15.586L19,6.414V21H5Zm11,9a1,1,0,0,1-1,1H13v2a1,1,0,0,1-2,0V13H9a1,1,0,0,1,0-2h2V9a1,1,0,0,1,2,0v2h2A1,1,0,0,1,16,12Z'></path></g></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnTABLE_NEW_RECORD:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
+
+.btnTABLE_ONLY_ACTIVE_RECORDS_ON {
+  /* ON= with border */
+  /* icon-only-active-records is defined in tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='34px' height='34px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' stroke='rgb(128, 128, 255)' fill='rgb(128, 128, 255)'  > <g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>/svg/ic-switch-on</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='ic-switch-on' fill-rule='nonzero' fill='rgb(128, 128, 255)'> <path d='M3,12 C3,14.2046438 4.78852545,16 6.9947834,16 L17.0052166,16 C19.2082844,16 21,14.209139 21,12 C21,9.79535615 19.2114745,8 17.0052166,8 L6.9947834,8 C4.79171562,8 3,9.790861 3,12 Z M1,12 C1,8.68773136 3.68570682,6 6.9947834,6 L17.0052166,6 C20.3154275,6 23,8.69016475 23,12 C23,15.3122686 20.3142932,18 17.0052166,18 L6.9947834,18 C3.68457248,18 1,15.3098352 1,12 Z M17,15 C15.3431458,15 14,13.6568542 14,12 C14,10.3431458 15.3431458,9 17,9 C18.6568542,9 20,10.3431458 20,12 C20,13.6568542 18.6568542,15 17,15 Z' id='Rectangle-75'> </path> </g> </g> </g></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnTABLE_ONLY_ACTIVE_RECORDS_ON:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
+
+/* OFF= without border */
+
+.btnTABLE_ONLY_ACTIVE_RECORDS_OFF {
+  /* icon-only-active-records is defined in  tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='34px' height='34px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' stroke='rgb(128, 128, 255)' fill='rgb(128, 128, 255)'  > <g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>/svg/ic-switch-on</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='ic-switch-on' fill-rule='nonzero' fill='rgb(128, 128, 255)'> <path d='M3,12 C3,14.2046438 4.78852545,16 6.9947834,16 L17.0052166,16 C19.2082844,16 21,14.209139 21,12 C21,9.79535615 19.2114745,8 17.0052166,8 L6.9947834,8 C4.79171562,8 3,9.790861 3,12 Z M1,12 C1,8.68773136 3.68570682,6 6.9947834,6 L17.0052166,6 C20.3154275,6 23,8.69016475 23,12 C23,15.3122686 20.3142932,18 17.0052166,18 L6.9947834,18 C3.68457248,18 1,15.3098352 1,12 Z M17,15 C15.3431458,15 14,13.6568542 14,12 C14,10.3431458 15.3431458,9 17,9 C18.6568542,9 20,10.3431458 20,12 C20,13.6568542 18.6568542,15 17,15 Z' id='Rectangle-75'> </path> </g> </g> </g></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnTABLE_ONLY_ACTIVE_RECORDS_OFF:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
+
+.btnTABLE_ONLY_INACTIVE_RECORDS_ON {
+  /* ON= with borders */
+  /* icon-only-inactive-records is defined in  tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='34px' height='34px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='gray' transform='rotate(180)' stroke='gray'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>/svg/ic-switch-on</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='ic-switch-on' fill-rule='nonzero' fill='gray'> <path d='M3,12 C3,14.2046438 4.78852545,16 6.9947834,16 L17.0052166,16 C19.2082844,16 21,14.209139 21,12 C21,9.79535615 19.2114745,8 17.0052166,8 L6.9947834,8 C4.79171562,8 3,9.790861 3,12 Z M1,12 C1,8.68773136 3.68570682,6 6.9947834,6 L17.0052166,6 C20.3154275,6 23,8.69016475 23,12 C23,15.3122686 20.3142932,18 17.0052166,18 L6.9947834,18 C3.68457248,18 1,15.3098352 1,12 Z M17,15 C15.3431458,15 14,13.6568542 14,12 C14,10.3431458 15.3431458,9 17,9 C18.6568542,9 20,10.3431458 20,12 C20,13.6568542 18.6568542,15 17,15 Z' id='Rectangle-75'> </path> </g> </g> </g></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnTABLE_ONLY_INACTIVE_RECORDS_ON:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
+
+/* OFF= without borders */
+
+.btnTABLE_ONLY_INACTIVE_RECORDS_OFF {
+  /* icon-only-inactive-records is defined in tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='34px' height='34px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='gray' transform='rotate(180)' stroke='gray'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>/svg/ic-switch-on</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='ic-switch-on' fill-rule='nonzero' fill='gray'> <path d='M3,12 C3,14.2046438 4.78852545,16 6.9947834,16 L17.0052166,16 C19.2082844,16 21,14.209139 21,12 C21,9.79535615 19.2114745,8 17.0052166,8 L6.9947834,8 C4.79171562,8 3,9.790861 3,12 Z M1,12 C1,8.68773136 3.68570682,6 6.9947834,6 L17.0052166,6 C20.3154275,6 23,8.69016475 23,12 C23,15.3122686 20.3142932,18 17.0052166,18 L6.9947834,18 C3.68457248,18 1,15.3098352 1,12 Z M17,15 C15.3431458,15 14,13.6568542 14,12 C14,10.3431458 15.3431458,9 17,9 C18.6568542,9 20,10.3431458 20,12 C20,13.6568542 18.6568542,15 17,15 Z' id='Rectangle-75'> </path> </g> </g> </g></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnTABLE_ONLY_INACTIVE_RECORDS_OFF:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
+
+/* div (when active) resets the datatable searchbox filter if clicked */
+
+.btnTABLE_CANCEL_FILTER_ACTIVE {
+  /* icon-filter-cancel-active é definido em tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='black'><g id='SVGRepo_blackgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <g id='Interface / Filter_Off'> <path id='Vector' d='M13 4H18.4C18.9601 4 19.2409 4 19.4548 4.10899C19.6429 4.20487 19.7948 4.35774 19.8906 4.5459C19.9996 4.75981 20 5.04005 20 5.6001V6.3448C20 6.58444 20 6.70551 19.9727 6.81942C19.9482 6.92146 19.9072 7.01893 19.8524 7.1084C19.7906 7.20931 19.7043 7.2958 19.5314 7.46875L18 9.00012M7.49961 4H5.59961C5.03956 4 4.75981 4 4.5459 4.10899C4.35774 4.20487 4.20487 4.35774 4.10899 4.5459C4 4.75981 4 5.04005 4 5.6001V6.33736C4 6.58195 4 6.70433 4.02763 6.81942C4.05213 6.92146 4.09263 7.01893 4.14746 7.1084C4.20928 7.20928 4.29591 7.29591 4.46875 7.46875L9.53149 12.5315C9.70443 12.7044 9.79044 12.7904 9.85228 12.8914C9.90711 12.9808 9.94816 13.0786 9.97266 13.1807C10 13.2946 10 13.4155 10 13.6552V18.411C10 19.2682 10 19.6971 10.1805 19.9552C10.3382 20.1806 10.5814 20.331 10.8535 20.3712C11.1651 20.4172 11.5487 20.2257 12.3154 19.8424L13.1154 19.4424C13.4365 19.2819 13.5966 19.2013 13.7139 19.0815C13.8176 18.9756 13.897 18.8485 13.9453 18.7083C14 18.5499 14 18.37 14 18.011V13.6626C14 13.418 14 13.2958 14.0276 13.1807C14.0521 13.0786 14.0926 12.9809 14.1475 12.8915C14.2091 12.7909 14.2952 12.7048 14.4669 12.5331L14.4688 12.5314L15.5001 11.5001M15.5001 11.5001L5 1M15.5001 11.5001L19 15' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path> </g> </g></svg>");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btnTABLE_CANCEL_FILTER_ACTIVE:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
+
+/* div (when active) resets the datatable searchbox filter if clicked */
+
+.btnTABLE_CANCEL_FILTER_INACTIVE {
+  /* icon-filter-cancel-inactive é definido em tailwind.config.js */
+  box-sizing: border-box;
+  height: 2.25rem;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='lightgray'><g id='SVGRepo_lightgraygCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <g id='Interface / Filter_Off'> <path id='Vector' d='M13 4H18.4C18.9601 4 19.2409 4 19.4548 4.10899C19.6429 4.20487 19.7948 4.35774 19.8906 4.5459C19.9996 4.75981 20 5.04005 20 5.6001V6.3448C20 6.58444 20 6.70551 19.9727 6.81942C19.9482 6.92146 19.9072 7.01893 19.8524 7.1084C19.7906 7.20931 19.7043 7.2958 19.5314 7.46875L18 9.00012M7.49961 4H5.59961C5.03956 4 4.75981 4 4.5459 4.10899C4.35774 4.20487 4.20487 4.35774 4.10899 4.5459C4 4.75981 4 5.04005 4 5.6001V6.33736C4 6.58195 4 6.70433 4.02763 6.81942C4.05213 6.92146 4.09263 7.01893 4.14746 7.1084C4.20928 7.20928 4.29591 7.29591 4.46875 7.46875L9.53149 12.5315C9.70443 12.7044 9.79044 12.7904 9.85228 12.8914C9.90711 12.9808 9.94816 13.0786 9.97266 13.1807C10 13.2946 10 13.4155 10 13.6552V18.411C10 19.2682 10 19.6971 10.1805 19.9552C10.3382 20.1806 10.5814 20.331 10.8535 20.3712C11.1651 20.4172 11.5487 20.2257 12.3154 19.8424L13.1154 19.4424C13.4365 19.2819 13.5966 19.2013 13.7139 19.0815C13.8176 18.9756 13.897 18.8485 13.9453 18.7083C14 18.5499 14 18.37 14 18.011V13.6626C14 13.418 14 13.2958 14.0276 13.1807C14.0521 13.0786 14.0926 12.9809 14.1475 12.8915C14.2091 12.7909 14.2952 12.7048 14.4669 12.5331L14.4688 12.5314L15.5001 11.5001M15.5001 11.5001L5 1M15.5001 11.5001L19 15' stroke='lightgray' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path> </g> </g></svg>");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/****************************************************************************
+ input type text
+****************************************************************************/
+
+input[type="text"].text_formFieldValue {
+  font-size: 1em;
+  vertical-align: middle;
+  border-top: 1px solid rgb(146, 186, 167);
+  border-bottom: 1px solid rgb(146, 186, 167);
+  border-left: 1px solid rgb(146, 186, 167);
+  border-right: 1px solid rgb(146, 186, 167);
+  background-color: white;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  cursor: pointer;
+  margin-top: 2px;
+  padding-left: 5px;
+  color: black;
+  width: 100%;
+  line-height: 25px;
+}
+
+input[type="text"].text_formFieldValue:hover {
+  border-color: green;
+  background-color: #e6e6ff;
+}
+
+input[type="text"].text_formFieldValue:focus {
+  background-color: #ffffcc;
+  border-color: green;
+}

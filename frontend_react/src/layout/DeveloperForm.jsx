@@ -1,5 +1,4 @@
 
-import '../css/index.css';
 import {  useEffect } from 'react';
 import {  backendUrl } from './Main.jsx';
 

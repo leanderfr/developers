@@ -1,5 +1,4 @@
 
-import '../css/index.css';
 import ItemMenu from './ItemMenu.jsx';
 import { useContext } from 'react';
 import {  SharedContext } from './Main.jsx';

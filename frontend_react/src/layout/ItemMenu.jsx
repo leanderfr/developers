@@ -1,7 +1,4 @@
 
-
-import '../css/index.css';
-
 function ItemMenu( {text, href} ) {
   return (
     <div className="ItemMenu">

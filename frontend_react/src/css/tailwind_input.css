@@ -385,6 +385,17 @@ background-color:  #FFC266
 .DatatableRow:hover {
 background-color:  #FFC266
 }
+.DatatableTitle {
+height: 80px;
+font-size: 25px  ;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+justify-items: center;
+ align-items: center;
+padding-left:10px;
+}
+
 .actionColumn {
 display: flex;
 flex-direction: row;
@@ -408,4 +419,142 @@ border: solid 1px navy;
 @apply w-auto h-auto border-[1px] border-gray-600 rounded-sm bg-white flex;
 }
 
+/* searchBox => textbox to search  , magnifying icon at the right corner */
+.txtTABLE_SEARCHBOX {
+    /* magnifying-icon is defined in tailwind.config.js */
+    @apply cursor-pointer w-[400px] box-border border-2 border-gray-400 hover:border-black rounded-md bg-transparent bg-no-repeat 
+        bg-position-right-corner-icon p-searchbox bg-icon-magnifying h-9;
+}
 
+.txtTABLE_SEARCHBOX:focus {
+    @apply bg-[#ebf6f9];
+}
+
+
+/* prettier tooltip to highlight buttons */
+.prettierTitle_black {
+    background-color: #333333 !important;
+    border-color: #333333 !important ;
+    border-bottom-left-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+    color: white !important;
+    font-family: "Roboto", sans-serif !important;
+    font-size: 13px !important;
+    line-height: 15px !important;
+    white-space: nowrap !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    position: relative !important;
+    display: inline-block !important;
+    z-index: 1000004 !important;
+}
+
+
+/****************************************************************************
+buttons
+****************************************************************************/
+button.btnCANCEL {
+    @apply bg-gray-300 border-transparent border-[1px] text-black  text-center h-[30px] cursor-pointer w-[150px] hover:border-black
+ bg-icon-button-cancel  bg-auto bg-no-repeat  bg-position-left-corner-icon  pt-[2px] rounded-[6px];
+}
+
+
+button.btnSAVE {
+    /* icon-button-save is defined in tailwind.config.js */
+    @apply bg-blue-500 border-transparent border-[1px] text-white  text-center h-[30px] cursor-pointer w-[170px] hover:border-red-950
+ bg-icon-button-save  bg-auto bg-no-repeat  bg-position-left-corner-icon  pt-[2px] pl-9 rounded-[6px];
+}
+
+button.btnUPLOAD {
+    /* icon-button-upload is defined in tailwind.config.js */
+    @apply bg-gray-300 border-transparent border-[1px] text-black  text-center h-[30px] cursor-pointer w-[170px] hover:border-black
+ bg-icon-button-upload  bg-auto bg-no-repeat  bg-position-left-corner-icon  pt-[2px] pl-9 rounded-[6px];
+}
+
+button.btnDELETE {
+    /* icon-button-delete is defined in tailwind.config.js */
+    @apply bg-red-500 border-transparent border-[1px] text-white  text-center h-[30px] cursor-pointer w-auto  hover:border-red-950
+ bg-icon-button-delete  bg-auto bg-no-repeat  bg-position-left-corner-icon  pt-[2px] pl-9 rounded-[6px] px-[20px] min-w-[150px];
+}
+
+.btnTABLE_NEW_RECORD {
+    /* icon-new-record is defined in tailwind.config.js */
+    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-new-record  bg-center hover:border-gray-500 h-9;
+}
+
+.btnTABLE_ONLY_ACTIVE_RECORDS_ON {
+  /* ON= with border */
+  /* icon-only-active-records is defined in tailwind.config.js */
+  @apply cursor-pointer w-[70px] box-border border-2 border-gray-500  rounded-md bg-transparent bg-no-repeat 
+      bg-icon-only-active-records  bg-center hover:border-gray-500 h-9;
+}
+/* OFF= without border */
+.btnTABLE_ONLY_ACTIVE_RECORDS_OFF {
+    /* icon-only-active-records is defined in  tailwind.config.js */
+    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-only-active-records   bg-center hover:border-gray-500 h-9;
+}
+
+.btnTABLE_ONLY_INACTIVE_RECORDS_ON {
+    /* ON= with borders */
+    /* icon-only-inactive-records is defined in  tailwind.config.js */
+    @apply cursor-pointer w-[70px] box-border border-2 border-gray-500  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-only-inactive-records  bg-center hover:border-gray-500 h-9;
+}
+/* OFF= without borders */
+.btnTABLE_ONLY_INACTIVE_RECORDS_OFF {
+    /* icon-only-inactive-records is defined in tailwind.config.js */
+    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-only-inactive-records  bg-center hover:border-gray-500 h-9;
+}
+
+
+/* div (when active) resets the datatable searchbox filter if clicked */
+.btnTABLE_CANCEL_FILTER_ACTIVE {
+    /* icon-filter-cancel-active é definido em tailwind.config.js */
+    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-filter-cancel-active  bg-contain bg-center hover:border-gray-500 h-9;
+}
+
+/* div (when active) resets the datatable searchbox filter if clicked */
+.btnTABLE_CANCEL_FILTER_INACTIVE {
+    /* icon-filter-cancel-inactive é definido em tailwind.config.js */
+    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-filter-cancel-inactive  bg-contain bg-center  h-9;
+}
+
+
+
+/****************************************************************************
+ input type text
+****************************************************************************/
+input[type="text"].text_formFieldValue {
+    font-size: 1em;
+    vertical-align: middle;
+    border-top: 1px solid rgb(146, 186, 167);
+    border-bottom: 1px solid rgb(146, 186, 167);
+    border-left: 1px solid rgb(146, 186, 167);
+    border-right: 1px solid rgb(146, 186, 167);
+    background-color: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    cursor: pointer;
+    margin-top: 2px;
+    padding-left: 5px;
+    color: black;
+    width: 100%;
+    line-height: 25px;
+}
+input[type="text"].text_formFieldValue:hover {
+    border-color: green;
+    background-color: #e6e6ff;
+}
+input[type="text"].text_formFieldValue:focus {
+    background-color: #ffffcc;
+    border-color: green;
+}

@@ -1,9 +1,10 @@
 
 import 'spin.js/spin.css';
 import {Spinner} from 'spin.js';
+import $ from 'jquery'
 
 
-export function prepareLoadingAnimation () {
+export const prepareLoadingAnimation = () =>  {
     // react exibe/remove animacao ajax, necessario refazer propriedades da animacao sempre que for reexibida (useEffect)
     var opts = {
       lines: 12 // The number of lines to draw
@@ -32,4 +33,36 @@ export function prepareLoadingAnimation () {
     // para exibir/ocultar esta div, usar as funcoes: showLoadingGif()/hideLoadingGif()
     var divLoading = document.getElementById('divLoading');
     new Spinner(opts).spin(divLoading);
+}
+
+
+
+//******************************************************************************
+// improve the look of the title atribute (mouse hover an element)
+// thanx jquery for this
+// elements that have 'putPrettierTooltip' class will be affected
+//******************************************************************************
+export const improveTooltipLook = () => {
+
+  setTimeout( () => {
+    // define tooltip of top buttons
+    if (typeof $('.putPrettierTooltip').tooltip !== "undefined") {
+      $('.putPrettierTooltip').tooltip({ 
+        tooltipClass: 'prettierTitle_black',  
+        show: false,  
+        hide: false,  
+        position: { my: "left top", at: "left top-40", collision: "flipfit" }
+      })
+    }
+
+  }, 500)    
+}
+
+
+/***********************************************************************************************************************
+the jquery tooltip wont go away when user clicks on a div or button with a tooltip attached to it, 
+the code below solves this
+***********************************************************************************************************************/
+export const forceHideToolTip = () => {
+  $('div[class^="ui-tooltip"]').remove();
 }

@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import '../css/index.css';
 import {  SharedContext } from './Main.jsx';
 
 
