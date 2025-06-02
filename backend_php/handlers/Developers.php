@@ -8,7 +8,7 @@ class Developers
 
   public function getDevelopers(string $status, string $searchbox): void   {
 
-    $sql =  "select id, name, ifnull(active, false) as active ".
+    $sql =  "select id, name, ifnull(active, false) as active, concat('developer_', id, '.png') as picture ".
             "from developers  ".
             "where deleted_at is null ";
 
@@ -33,7 +33,7 @@ class Developers
   //***************************************************************************************************************************************
 
   public function getDeveloperById($id): void   {
-    $sql =  "select name  ".
+    $sql =  "select name , concat('developer_', id, '.png') as picture ".
             "from developers  ".
             "where id=$id ";
 

@@ -85,3 +85,37 @@ export const slidingMessage = (html, time) => {
 
   setTimeout(function () { slidingDIV.hide("slide", { direction: "right" }, 200); }, time);
 }
+
+
+
+//********************************************************************************************************************************
+// prepares mouseover, over puppy icon,, bottom right corner
+//*******************************************************************************************************************************
+
+export const preparePuppyIcon = () => {
+  $('#divDoggy').mouseover(function (e) {
+    $('#divDoggy_1').show(); $('#divDoggy_2').show(); $('#divDoggy_3').show();
+    $('#divDoggy_1').animate({ bottom: '55px', right: '105px', zIndex: 3000 }, 200, function () {
+    });
+
+    $('#divDoggy_2').animate({ bottom: '75px', right: '125px', zIndex: 3000 }, 200);
+    $('#divDoggy_3').animate({ bottom: '90px', right: '105px' }, 200, function () {
+      $(this).css('z-index', 2101);
+    });
+  });
+
+  // usuario tirou  mouse do icone cachorro 
+  $('#divDoggy').mouseout(function (e) {
+    $('#divDoggy_1').hide(); $('#divDoggy_2').hide(); $('#divDoggy_3').hide();
+    $('#divDoggy_1').css('right', '80px'); $('#divDoggy_1').css('bottom', '1px');
+    $('#divDoggy_2').css('right', '80px'); $('#divDoggy_2').css('bottom', '1px');
+    $('#divDoggy_3').css('right', '80px'); $('#divDoggy_3').css('bottom', '-150px');
+  });
+}
+
+/***********************************************************************************************************************
+make a div (window) be draggable
+***********************************************************************************************************************/
+export const makeWindowDraggable = (title_id, window_id) => {
+  $(`#${window_id}`).draggable({ handle: `#${title_id}`, containment: '#backDrop' });
+}

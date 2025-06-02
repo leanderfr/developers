@@ -1,7 +1,7 @@
 
 import {  useEffect } from 'react';
-import {  backendUrl } from './Main.jsx';
-import { slidingMessage  } from '../js/utils.js';
+import {  backendUrl, imagesUrl } from './Main.jsx';
+import { slidingMessage, makeWindowDraggable } from '../js/utils.js';
 
 // useState by 'Aminadav Glickshtein' allows a third parameter to obtain the current state of the variable
 // doing this with React's default useState is complicated
@@ -27,14 +27,14 @@ function DeveloperForm( props )    {
   user changes the car image, updates img src in the preview div
   *******************************************************************************************************************************************************/
   const carImageChanged = async () =>  { 
-  $('#carPicture').attr('src', window.URL.createObjectURL( document.getElementById('fileCarImage').files[0] )) 
+  $('#developerPicture').attr('src', window.URL.createObjectURL( document.getElementById('devCarImage').files[0] )) 
   }
 
   /********************************************************************************************************************************************************
   reset content of the <img> to avoid problem with the onchange event
   *******************************************************************************************************************************************************/
   const resetImage = async () =>  { 
-  $('#carPicture').attr('src', '')
+  $('#developerPicture').attr('src', '')
   }
 
 
@@ -51,6 +51,20 @@ function DeveloperForm( props )    {
   }
 
 
+  /************************************************************************************************************************************************************
+  put focus first field and prepare masks
+  ************************************************************************************************************************************************************/
+  const putFocusInFirstInputText_AndOthersParticularitiesOfTheDeveloperForm = () => { 
+    setTimeout(() => {
+      $('#txtName').focus()    
+    }, 500);
+
+    makeWindowDraggable('divWINDOW_TOP', 'developerForm')
+    props.setIsLoading(false)
+  }
+
+
+
   //*******************************************************************************************************
   //*******************************************************************************************************
   const fetchRecord = async () =>  {
@@ -59,6 +73,11 @@ function DeveloperForm( props )    {
     .then((data) => {
         props.setIsLoading(false)
         setRecord(data)  
+
+        $('#developerPicture').attr('src', imagesUrl + data.picture )
+
+        putFocusInFirstInputText_AndOthersParticularitiesOfTheDeveloperForm() 
+
     })
     .catch((error) => {props.setIsLoading(false); console.log('erro='+error)} );
   }
@@ -67,11 +86,18 @@ function DeveloperForm( props )    {
   // runs only once
   //*******************************************************************************************************
   useEffect( () => {        
-      if ( getRecord.current == null )     {
-        props.setIsLoading(true)
+      props.setIsLoading(true)
+
+      // fetches record if editing
+      if ( formHttpMethodApply==='PATCH' ) {        
         fetchRecord()    
       }
-  } )
+      if ( formHttpMethodApply==='POST' ) {        
+        putFocusInFirstInputText_AndOthersParticularitiesOfTheDeveloperForm()
+      }
+
+  }, [])
+
 
   //*******************************************************************************************************
   // runs only once
@@ -136,7 +162,7 @@ function DeveloperForm( props )    {
 
                     <div className="flex flex-row w-full pb-2 gap-6 ">  
                       <div className='w-[90%]'>
-                        <input type="text" autoComplete="off" sequence="1"   id="txtDescription" maxLength='50' minLength='5' className='text_formFieldValue w-full'  />  
+                        <input type="text" autoComplete="off" sequence="1"   id="txtName" maxLength='50' minLength='5' className='text_formFieldValue w-full'  />  
                       </div>
                     </div>
 
@@ -146,7 +172,7 @@ function DeveloperForm( props )    {
 
                 {/* developer's picture --*/}
                 <div className="flex flex-row w-full gap-[10px] h-[200px] items-end ">
-                    <img id='carPicture'  alt='' style={{width: '400px', height:'200px' }} />
+                    <img id='developerPicture'  alt='' style={{width: '400px', height:'200px' }} />
                 </div>
 
               </div>
@@ -155,13 +181,13 @@ function DeveloperForm( props )    {
               <div className="flex flex-row w-full justify-between px-6 border-t-[1px] border-t-gray-300 py-2">
                 <button  id="btnCLOSE" className="btnCANCEL" onClick={closeCrudForm} >{ expressions.button_cancel }</button>
 
-                <button  id="btnUPLOAD" className="btnUPLOAD" onClick={ () => {$('#fileCarImage').trigger('click')} }  >{ expressions.upload_image }</button>
+                <button  id="btnUPLOAD" className="btnUPLOAD" onClick={ () => {$('#devCarImage').trigger('click')} }  >{ expressions.upload_image }</button>
 
                 <button  id="btnSAVE" className="btnSAVE" onClick={saveDeveloper} aria-hidden="true">{ expressions.button_save }</button>
               </div>
 
               {/* -- upload button, hidden and will be 'clicked' programtically when user clicks the upload button -- */}
-              <input type="file" accept="image/png" style={{width: '0px', height: '0px', overflow: 'hidden'}}  onChange={carImageChanged} id="fileCarImage" />
+              <input type="file" accept="image/png" style={{width: '0px', height: '0px', overflow: 'hidden'}}  onChange={carImageChanged} id="devCarImage" />
 
             </div> 
 

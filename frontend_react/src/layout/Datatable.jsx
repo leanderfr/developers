@@ -239,9 +239,9 @@ function Datatable( props ) {
                           {/* the last column (j===length-1) shows the action buttons */}
                           {j===length-1 ? (
                                 <div  className='actionColumn' style= {{ width: col.width}}  >
-                                    <div className='actionIcon' onClick={ () => Crud('patch', record.id) } ><img alt='' src='images/edit.svg' /></div>
-                                    <div className='actionIcon' onClick={ () => Crud('delete', record.id) }><img alt='' src='images/delete.svg' /></div>
-                                    <div className='actionIcon' onClick={ () => Crud('status', record.id) }><img alt='' src='images/activate.svg' /></div>
+                                    <div className='actionIcon' onClick={ () => Crud('PATCH', record.id) } ><img alt='' src='images/edit.svg' /></div>
+                                    <div className='actionIcon' onClick={ () => Crud('DELETE', record.id) }><img alt='' src='images/delete.svg' /></div>
+                                    <div className='actionIcon' onClick={ () => Crud('STATUS', record.id) }><img alt='' src='images/activate.svg' /></div>
                                 </div>  ) : 
 
                               (<div style={{width: col.width, paddingLeft: '5px'}}> {record[col.fieldname]}  </div>) 

@@ -15,12 +15,15 @@ import $ from 'jquery'
 import 'jquery-ui-bundle';
 import 'jquery-ui-bundle/jquery-ui.min.css';
 
-import { prepareLoadingAnimation  } from '../js/utils.js';
+import { prepareLoadingAnimation, preparePuppyIcon  } from '../js/utils.js';
 
 export const SharedContext = createContext();
 
 //export const backendUrl = 'http://ec2-54-94-203-105.sa-east-1.compute.amazonaws.com:8071'
 export const backendUrl = 'http://localhost'
+
+export const imagesUrl = 'https://devs-app.s3.sa-east-1.amazonaws.com/developers_app/'  
+
 
 function Main() {
 
@@ -89,6 +92,7 @@ function Main() {
   //************************************************************************************************************
   useEffect( () => {      
       prepareLoadingAnimation()  
+      preparePuppyIcon()
   }, [])
 
 
@@ -132,7 +136,7 @@ function Main() {
                 </div>
 
                 <div className='Datatable'>
-                  { expressions && <Datatable setIsLoading={setIsLoading}  /> }
+                  { expressions && <Datatable setIsLoading={setIsLoading} /> }
                 </div>
 
             </div>
