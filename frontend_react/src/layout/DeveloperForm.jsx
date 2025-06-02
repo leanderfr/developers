@@ -74,7 +74,10 @@ function DeveloperForm( props )    {
         props.setIsLoading(false)
         setRecord(data)  
 
-        $('#developerPicture').attr('src', imagesUrl + data.picture )
+        setTimeout(() => {
+          $('#developerPicture').attr('src', imagesUrl + data.picture )  
+        }, 100);
+        
 
         putFocusInFirstInputText_AndOthersParticularitiesOfTheDeveloperForm() 
 
