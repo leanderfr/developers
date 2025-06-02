@@ -34,7 +34,7 @@ function Datatable( props ) {
 
   // triggers CRUD form exbibition
   let [calledCrudForm, setCalledCrudForm, getCalledCrudForm] = useState('')
-  let [crudFormOperation, setCrudFormOperation, getCrudFormOperation] = useState('')
+  let [crudFormMethod, setCrudFormMethod, getCrudFormMethod] = useState('')
   let [crudFormRecordId, setCrudFormRecordId, getCrudFormRecordId] = useState('')
 
   let [currentStatus, setCurrentStatus, getCurrentStatus] = useState('')
@@ -43,7 +43,6 @@ function Datatable( props ) {
   let [showTipSearchbox, setShowTipSearchbox, getShowTipSearchbox] = useState(false) 
 
   
-
   //*****************************************************************************
   // fetch current datatable records
   //*****************************************************************************
@@ -95,8 +94,8 @@ function Datatable( props ) {
   //************************************************************************************************************
   // show CRUD form of a given table
   //************************************************************************************************************  
-  const Crud = ( operation, recordId ) => {
-    setCrudFormOperation( operation )
+  const Crud = ( Method, recordId ) =>  {
+    setCrudFormMethod( Method )
     setCrudFormRecordId( recordId )
     setCalledCrudForm(true)
   }
@@ -216,7 +215,7 @@ function Datatable( props ) {
 
 
 
-    {/* looping para exibir cada coluna baseado na tabela atual */}
+    {/* loop to display each column based on the current table */}
     <div className="DatatableHeader">
         {columns.map(function (column)  {     
           return( <div key={column.id} style={{width: column.width }}>dd {column.title}  </div> );                 
@@ -224,23 +223,23 @@ function Datatable( props ) {
     </div>          
 
 
-    {/* looping para exibir registros da tabela atual */}
+    {/* loop to display records from the current table */}
     <div className="DatatableRows">
-      {/* percorre os registros */}
+      {/* loop the records */}
       { records && 
         records.map(function (record)  {     
               return(
-                /* linha do registro  */
+                /* record row  */
                 <div className='DatatableRow' key={`tr${record.id}`}  > 
                 {
-                /* exbe cada coluna do registro atual  */
+                /* display each column of the record  */
                 columns.map(function (col, j, {length}) {
                     return( 
                       <Fragment key={`frag${record.id}${col.id}`} >
-                          {/* exibe ultima, acoes (1a condicao abaixo) ou outras colunas (2a condicao abaixo) */}
+                          {/* the last column (j===length-1) shows the action buttons */}
                           {j===length-1 ? (
                                 <div  className='actionColumn' style= {{ width: col.width}}  >
-                                    <div className='actionIcon' onClick={ () => Crud('edit', record.id) } ><img alt='' src='images/edit.svg' /></div>
+                                    <div className='actionIcon' onClick={ () => Crud('patch', record.id) } ><img alt='' src='images/edit.svg' /></div>
                                     <div className='actionIcon' onClick={ () => Crud('delete', record.id) }><img alt='' src='images/delete.svg' /></div>
                                     <div className='actionIcon' onClick={ () => Crud('status', record.id) }><img alt='' src='images/activate.svg' /></div>
                                 </div>  ) : 
@@ -255,11 +254,11 @@ function Datatable( props ) {
         }) }
     </div>
 
-    {/* se a edicao de developer foi acionada */}
+    {/* if the developers edition was asked */}
     { getCalledCrudForm.current  && _currentMenuItem === 'itemMenuDevelopers' &&   
             <DeveloperForm  
                 expressions={_expressions}    
-                operation={getCrudFormOperation.current} 
+                formHttpMethodApply={getCrudFormMethod.current} 
                 recordId={getCrudFormRecordId.current}
                 closeCrudForm = {closeCrudForm}
                 setIsLoading={props.setIsLoading}

@@ -559,3 +559,54 @@ input[type="text"].text_formFieldValue:focus {
     background-color: #ffffcc;
     border-color: green;
 }
+
+/****************************************************************************
+****************************************************************************/
+#divWINDOW_TOP {
+    @apply flex flex-row w-full h-[40px] bg-gray-300 leading-10 items-center justify-between cursor-pointer rounded-t-lg;
+}
+
+.divWINDOW_BUTTON {
+    font-size: 1.3em;
+    cursor: pointer;
+    color: black;
+}
+.divWINDOW_BUTTON:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+#divWINDOW_DRAG {
+    @apply bg-icon-div-draggable w-7 bg-transparent bg-no-repeat bg-contain bg-center mr-6  text-gray-700;
+}
+
+
+/* modal form title */
+#divWINDOW_TITLE {
+    font-size: 1.2em;
+    color: black;
+    margin-left: 20px;
+}
+
+#messagesSlidingDiv {
+    position: absolute;
+    height: 70px;
+    line-height: 70px;
+    z-index: 10000;
+    left: 4%;
+    display: none;
+    text-align: center;
+    bottom: 25px;
+    margin: auto;
+    background-color: #ffebeb;
+    border-color: #b40000;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    color: #c40000;
+    font-size: 1.3em;
+    width: 90%;
+}

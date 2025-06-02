@@ -59,9 +59,7 @@ export const improveToolTipLook = () => {
     }
 
   }, 500)    
-
 }
-
 
 /***********************************************************************************************************************
 the jquery tooltip wont go away when user clicks on a div or button with a tooltip attached to it, 
@@ -69,4 +67,21 @@ the code below solves this
 ***********************************************************************************************************************/
 export const forceHideToolTip = () => {
   $('div[class^="ui-tooltip"]').remove();
+}
+
+
+/************************************************************************************************************************************************************
+display sliding message in red
+************************************************************************************************************************************************************/
+export const slidingMessage = (html, time) => {
+
+  let slidingDIV = $('#messagesSlidingDiv')
+
+  slidingDIV.html('&nbsp;&nbsp;&nbsp;&nbsp;' + html);
+  slidingDIV.show("slide", { direction: "left" }, 200);
+
+  // browser wont allow play beep unless user already 'touched' something in the screen
+  if (navigator.userActivation.hasBeenActive)     $('#alertBeep')[0].play()
+
+  setTimeout(function () { slidingDIV.hide("slide", { direction: "right" }, 200); }, time);
 }

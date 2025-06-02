@@ -545,6 +545,40 @@ video {
   display: none;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .visible {
   visibility: visible;
 }
@@ -561,6 +595,23 @@ video {
   top: 10rem;
 }
 
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mr-6 {
+  margin-right: 1.5rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
+}
+
 .flex {
   display: flex;
 }
@@ -573,12 +624,32 @@ video {
   display: none;
 }
 
+.h-\[200px\] {
+  height: 200px;
+}
+
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
 
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-\[95\%\] {
+  width: 95%;
+}
+
 .w-full {
   width: 100%;
+}
+
+.max-w-\[1300px\] {
+  max-width: 1300px;
 }
 
 .flex-row {
@@ -593,13 +664,73 @@ video {
   align-items: flex-start;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-5 {
   gap: 1.25rem;
 }
 
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-\[10px\] {
+  gap: 10px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-t-\[1px\] {
+  border-top-width: 1px;
+}
+
+.border-t-gray-300 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
 }
 
 .pt-1 {
@@ -608,6 +739,10 @@ video {
 
 .pt-3 {
   padding-top: 0.75rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .text-xs {
@@ -1413,4 +1548,76 @@ input[type="text"].text_formFieldValue:hover {
 input[type="text"].text_formFieldValue:focus {
   background-color: #ffffcc;
   border-color: green;
+}
+
+/****************************************************************************
+****************************************************************************/
+
+#divWINDOW_TOP {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+  line-height: 2.5rem;
+}
+
+.divWINDOW_BUTTON {
+  font-size: 1.3em;
+  cursor: pointer;
+  color: black;
+}
+
+.divWINDOW_BUTTON:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+#divWINDOW_DRAG {
+  margin-right: 1.5rem;
+  width: 1.75rem;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg width='24px' height='24px' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgb(0,0,0)'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'><line x1='32' y1='8' x2='32' y2='56'></line><line x1='56' y1='32' x2='8' y2='32'></line><polyline points='40 16 32 8 24 16'></polyline><polyline points='24 48 32 56 40 48'></polyline><polyline points='48 40 56 32 48 24'></polyline><polyline points='16 24 8 32 16 40'></polyline></g></svg>");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+
+/* modal form title */
+
+#divWINDOW_TITLE {
+  font-size: 1.2em;
+  color: black;
+  margin-left: 20px;
+}
+
+#messagesSlidingDiv {
+  position: absolute;
+  height: 70px;
+  line-height: 70px;
+  z-index: 10000;
+  left: 4%;
+  display: none;
+  text-align: center;
+  bottom: 25px;
+  margin: auto;
+  background-color: #ffebeb;
+  border-color: #b40000;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  color: #c40000;
+  font-size: 1.3em;
+  width: 90%;
 }

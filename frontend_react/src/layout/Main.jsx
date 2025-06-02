@@ -100,56 +100,78 @@ function Main() {
 
     <>
 
-    <div className="Content">
+      <div className="Content">
 
-      {/* context => shares current: country, expressions and country between components */}
-      <SharedContext.Provider 
-        value={{ 
-            _expressions: expressions, 
-            _isUSAChecked: isUSAChecked, 
-            _currentBackend: currentBackend, 
-            _currentMenuItem: currentMenuItem  }}  >
+        {/* context => shares current: country, expressions and country between components */}
+        <SharedContext.Provider 
+          value={{ 
+              _expressions: expressions, 
+              _isUSAChecked: isUSAChecked, 
+              _currentBackend: currentBackend, 
+              _currentMenuItem: currentMenuItem  }}  >
 
-          {/* left side bar */}
-          <div className='Sidebar'>
-                <Sidebar  />
+            {/* left side bar */}
+            <div className='Sidebar'>
+                  <Sidebar  />
+            </div>
+
+            {/* header and datatable */}
+            <div className="Main">
+
+                <div className='Header'>
+                  {/* if still loading expressions, loads Header without data, only visual part */}
+
+                  {/* se ja carregou expressoes, carrega Header com as frases do idiomas atual */}
+                  {/* if expressions loaded, load Header with current language expressions */}
+                  { expressions && 
+                    <Header                 
+                      onChangeLanguage={changeLanguageAndReload}                 
+                      onChangeBackend={changeBackendAndReload} 
+                    /> }
+
+                </div>
+
+                <div className='Datatable'>
+                  { expressions && <Datatable setIsLoading={setIsLoading}  /> }
+                </div>
+
+            </div>
+
+        </SharedContext.Provider>
+
+      </div>    
+
+      {/* Loading animation */}
+      <div className='backdropTransparent' style={{ visibility: isLoading ? 'visible' : 'hidden' }} >
+        <div id='divLoading' >&nbsp;</div>
+      </div>
+
+      {/* -- show sliding error messages --*/}
+      <div id="messagesSlidingDiv" >
+        &nbsp;
+      </div>
+
+      <audio id="alertBeep" >
+        <source src="sounds/error_beep.mp3" type="audio/mpeg" />    
+      </audio>
+
+      {/* -- puppy icon bottom right corner  --*/}
+      <div className='_doggy'  id='divDoggy'></div>
+      <div className='_doggy_1' id='divDoggy_1'></div>
+      <div className='_doggy_2' id='divDoggy_2'></div>
+      {isUSAChecked && 
+          <div className='_doggy_3_english' id='divDoggy_3'>
+          </div> }
+      {! isUSAChecked && 
+          <div className='_doggy_3_portuguese' id='divDoggy_3'>
           </div>
-
-          {/* header and datatable */}
-          <div className="Main">
-
-              <div className='Header'>
-                {/* if still loading expressions, loads Header without data, only visual part */}
-
-                {/* se ja carregou expressoes, carrega Header com as frases do idiomas atual */}
-                {/* if expressions loaded, load Header with current language expressions */}
-                { expressions && 
-                  <Header                 
-                    onChangeLanguage={changeLanguageAndReload}                 
-                    onChangeBackend={changeBackendAndReload} 
-                  /> }
-
-              </div>
-
-              <div className='Datatable'>
-                { expressions && <Datatable setIsLoading={setIsLoading}  /> }
-              </div>
-
-          </div>
-
-      </SharedContext.Provider>
-
-    </div>    
-
-    {/* Loading animation */}
-        <div className='backdropTransparent' style={{ visibility: isLoading ? 'visible' : 'hidden' }} >
-          <div id='divLoading' >&nbsp;</div>
-        </div>
+      }
 
     </>
 
 
-  );
+  )
 }
+
 
 export default Main

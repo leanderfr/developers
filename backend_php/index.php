@@ -73,6 +73,11 @@ if ($getRequest) {
     $handlerDevelopers->getDevelopers($status, '');
   });
 
+  $router->Get("/developer/{id}", function($id) use($handlerDevelopers)  {  
+    $handlerDevelopers->getDeveloperById($id);
+  });
+
+
 
 
 
