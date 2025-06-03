@@ -112,6 +112,11 @@ if ($postRequest)  {
     $router->Post("/expression", function() use($handlerExpressions)  {  
       $handlerExpressions->postOrPatchExpression();
     });
+
+    $router->Post("/developer", function() use($handlerDevelopers)  {  
+      $handlerDevelopers->postOrPatchDeveloper();
+    });
+
 }
 
 

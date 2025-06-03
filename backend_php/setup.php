@@ -11,7 +11,7 @@ $database = 'developers';
 $AWS_S3_APIKEY = 'AKIA5MSUBQX4PGLJV4NH';
 $AWS_S3_SECRETKEY = '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';
 $AWS_S3_BUCKET = 'devs-app';
-$AWS_S3_IMAGES_FOLDER= 'hiring_machine';
+$AWS_S3_IMAGES_FOLDER= 'developers_app';
 $AWS_S3_URL = 'https://devs-app.s3.sa-east-1.amazonaws.com/hiring_machine/';
 
 $LOCAL_TMP_FOLDER= '/tmp';

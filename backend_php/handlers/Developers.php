@@ -83,7 +83,7 @@ class Developers
 
     // otherwise, use the PHP 8.4 request_parse_body() 
     else {
-      [$_FIELDS] = request_parse_body();
+      [$_FIELDS, $_FILES] = request_parse_body();
     }
 
     $dataError = '';
@@ -117,6 +117,25 @@ class Developers
 
     $name =   addslashes($_FIELDS['name']);
 
+    // is image ok  
+    // the front end already checked if the user didnt choose an image when adding record, that's impeditive to go on
+    // if the users didnt choose an image when updating record, bypass the image recording
+    $bypassImage = true;
+    if ( isset($_FILES['image']['tmp_name']) )  {
+      $imgInfo = getimagesize($_FILES['image']['tmp_name']);
+
+  //    if ($imgInfo === FALSE) 
+  //      internalError( 'File erro');
+
+      if ($imgInfo[2] !== IMAGETYPE_JPEG && $imgInfo[2] !== IMAGETYPE_PNG)
+        internalError( 'Image must be PNG');
+
+      if ($_FILES['image']['size'] > 1500000) 
+        internalError( 'Max size 1.5 MB');
+
+      $bypassImage = false;
+    }    
+
     // if no ID's been informed, its a POST, new record
     if ($developer_id=='')    {
       $crudSql = "insert into developers(name, created_at, updated_at, active) ". 
@@ -138,6 +157,11 @@ class Developers
     // if it was a POST, obtain the id  (__success__|record id)
     if ($developer_id=='') {
       $developer_id = explode("|", $result)[1];
+    }
+
+    // uploads the image to AWS S3
+    if (! $bypassImage)      {
+      uploadImageToAWS_S3('image', "developer_$developer_id");
     }
 
     http_response_code(200);   // 200= it was ok
