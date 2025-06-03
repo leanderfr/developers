@@ -73,7 +73,7 @@ class Developers
   	if ($developer_id!='' && ! is_numeric($developer_id))   routeError();
 
     // verify request
-    $fields = [ ['string', 'name', 5, 30] 
+    $fields = [ ['string', 'name', 5, 100] 
               ];
 
     // if it is posting ($developer_id==''), get the usual $_POST from php

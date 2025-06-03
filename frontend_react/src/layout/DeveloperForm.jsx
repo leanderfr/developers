@@ -14,20 +14,17 @@ import $ from 'jquery'
 
 function DeveloperForm( props )    {
   
-  // expressions from the current country/language
-  let expressions = props.expressions
-
   // json with the info of the developer
   let [record, setRecord, getRecord] = useState(null)
 
   // get details about what to perform
-  const {formHttpMethodApply, recordId} = props; 
+  const {expressions, formHttpMethodApply, currentId, setRecords} = props; 
 
   /********************************************************************************************************************************************************
   user changes the car image, updates img src in the preview div
   *******************************************************************************************************************************************************/
   const carImageChanged = async () =>  { 
-  $('#developerPicture').attr('src', window.URL.createObjectURL( document.getElementById('devCarImage').files[0] )) 
+  $('#developerPicture').attr('src', window.URL.createObjectURL( document.getElementById('devPicture').files[0] )) 
   }
 
   /********************************************************************************************************************************************************
@@ -44,13 +41,7 @@ function DeveloperForm( props )    {
     slidingMessage(expressions.user_needs_help, 3000)
   }
 
-  //*******************************************************************************************************
-  //*******************************************************************************************************
-  const saveDeveloper = () => {
-    slidingMessage('jhjj', 3000)
-  }
-
-
+  
   /************************************************************************************************************************************************************
   put focus first field and prepare masks
   ************************************************************************************************************************************************************/
@@ -68,7 +59,7 @@ function DeveloperForm( props )    {
   //*******************************************************************************************************
   //*******************************************************************************************************
   const fetchRecord = async () =>  {
-    fetch(`${backendUrl}/developer/${recordId}`, { method: "GET" })
+    fetch(`${backendUrl}/developer/${currentId}`, { method: "GET" })
     .then((response) => response.json())
     .then((data) => {
         props.setIsLoading(false)
@@ -95,7 +86,8 @@ function DeveloperForm( props )    {
       if ( formHttpMethodApply==='PATCH' ) {        
         fetchRecord()    
       }
-      if ( formHttpMethodApply==='POST' ) {        
+      if ( formHttpMethodApply==='POST' ) {   
+        setRecord([])       
         putFocusInFirstInputText_AndOthersParticularitiesOfTheDeveloperForm()
       }
 
@@ -110,9 +102,84 @@ function DeveloperForm( props )    {
     if (event.target === event.currentTarget) props.closeCrudForm()
   }
 
+
+
+  /********************************************************************************************************************************************************
+  validate data from the form and try to save it
+  ********************************************************************************************************************************************************/
+  async function saveDeveloper()  {
+
+    let toDo = formHttpMethodApply==='POST' ? 'insert' : 'update'
+    let error = ''
+
+    // minlength is invented, but needed to the IF below
+    if ( $('#txtName').val().trim().length < parseInt($('#txtName').attr('minlength'), 10) )  
+        error = props.expressions.missing_name + ' - Min: '+$('#txtName').attr('minlength')
+
+    // check if user has chosen any image when adding record
+    if (typeof $('#devPicture')[0].files[0]=='undefined' && toDo==='insert')   error = props.expressions.choose_an_image
+
+    // show any error detected
+    if (error!='') { 
+      slidingMessage(error, 3000)
+      return;
+    }
+
+    var formData = new FormData(); 
+    formData.append('name', $('#txtName').val())
+    // if user doenst choose image, the backend will bypass the update of the image
+    if (typeof $('#devPicture')[0].files[0]!='undefined')   
+      formData.append('image', $('#devPicture')[0].files[0]); 
+
+
+    let route = ''
+    if (formHttpMethodApply==='POST') 
+      route += 'developer'        
+    if (formHttpMethodApply==='PATCH') 
+      route += `developer/${currentId}`   
+
+    // formHttpMethodApply= POST, PATCH ou DELETE
+    setTimeout(() => {
+      props.setIsLoading(true)
+    }, 10);
+
+    // PHP doesnt work well with PATCH (laravel does), need to send all with POST here
+    await fetch(`${backendUrl}/${route}`, {method: props.formHttpMethodApply, body: formData})
+
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(text => {
+          throw new Error(`HTTP error! ${response.status}|` + text+'|')
+        })
+      }
+      return response.text()  
+    })
+    .then((msg) => {
+      slidingMessage(props.expressions.dev_recorded, 1500)        
+      props.setIsLoading(false)
+      setTimeout(() => {
+        props.closeCrudForm()
+        setRecords(null)   // triggers refreshing of the parent datatable
+
+      }, 1700);
+      
+    })
+    .catch((error) => {
+      props.setIsLoading(false)
+      slidingMessage('Error= '+error, 3000)        
+    })  
+
+  }
+
+
+/********************************************************************************************************************************************************
+********************************************************************************************************************************************************/
+
+
   return(
 
-    <>
+    <> 
+       { record && 
         <div className='backdropGray'  onClick={closeCrudForm} >     
 
           {/* -- car form container  */}
@@ -164,7 +231,12 @@ function DeveloperForm( props )    {
 
                     <div className="flex flex-row w-full pb-2 gap-6 ">  
                       <div className='w-[90%]'>
-                        <input type="text" autoComplete="off" sequence="1"   id="txtName" maxLength='50' minLength='5' className='text_formFieldValue w-full'  />  
+                        <input type="text" 
+                            autoComplete="off" sequence="1"   
+                            id="txtName" 
+                            maxLength='100' minLength='5' 
+                            defaultValue={  record.name } 
+                            className='text_formFieldValue w-full'  />  
                       </div>
                     </div>
 
@@ -183,19 +255,21 @@ function DeveloperForm( props )    {
               <div className="flex flex-row w-full justify-between px-6 border-t-[1px] border-t-gray-300 py-2">
                 <button  id="btnCLOSE" className="btnCANCEL" onClick={closeCrudForm} >{ expressions.button_cancel }</button>
 
-                <button  id="btnUPLOAD" className="btnUPLOAD" onClick={ () => {$('#devCarImage').trigger('click')} }  >{ expressions.upload_image }</button>
+                <button  id="btnUPLOAD" className="btnUPLOAD" onClick={ () => {$('#devPicture').trigger('click')} }  >{ expressions.upload_image }</button>
 
                 <button  id="btnSAVE" className="btnSAVE" onClick={saveDeveloper} aria-hidden="true">{ expressions.button_save }</button>
               </div>
 
               {/* -- upload button, hidden and will be 'clicked' programtically when user clicks the upload button -- */}
-              <input type="file" accept="image/png" style={{width: '0px', height: '0px', overflow: 'hidden'}}  onChange={carImageChanged} id="devCarImage" />
+              <input type="file" accept="image/png" style={{width: '0px', height: '0px', overflow: 'hidden'}}  onChange={carImageChanged} id="devPicture" />
 
             </div> 
 
           </div> 
 
         </div>
+
+      }
 
 
 

@@ -35,7 +35,7 @@ function Datatable( props ) {
   // triggers CRUD form exbibition
   let [calledCrudForm, setCalledCrudForm, getCalledCrudForm] = useState('')
   let [crudFormMethod, setCrudFormMethod, getCrudFormMethod] = useState('')
-  let [crudFormRecordId, setCrudFormRecordId, getCrudFormRecordId] = useState('')
+  let [crudFormCurrentId, setCrudFormCurrentId, getCrudFormCurrentId] = useState('')
 
   let [currentStatus, setCurrentStatus, getCurrentStatus] = useState('all')
 
@@ -94,10 +94,10 @@ function Datatable( props ) {
   //************************************************************************************************************
   // show CRUD form of a given table
   //************************************************************************************************************  
-  const Crud = ( formHttpMethodApply, recordId='' ) =>  {
+  const Crud = ( formHttpMethodApply, currentId='' ) =>  {
 
     setCrudFormMethod( formHttpMethodApply )
-    setCrudFormRecordId( recordId )
+    setCrudFormCurrentId( currentId )
     setCalledCrudForm(true)
   }
 
@@ -274,9 +274,11 @@ function Datatable( props ) {
             <DeveloperForm  
                 expressions={_expressions}    
                 formHttpMethodApply={getCrudFormMethod.current} 
-                recordId={getCrudFormRecordId.current}
+                currentId={getCrudFormCurrentId.current}
                 closeCrudForm = {closeCrudForm}
+                setRecords = {setRecords}
                 setIsLoading={props.setIsLoading}
+                getis={props.setIsLoading} juca
             />
     }
     

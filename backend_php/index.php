@@ -94,6 +94,15 @@ if ($patchRequest) {
       $handlerExpressions->ChangeStatus($id);
     });
 
+    $router->Patch("/developer/{id}", function($id) use($handlerDevelopers)  {  
+      $handlerDevelopers->postOrPatchDeveloper($id);
+    });
+
+    $router->Patch("/developer/status/{id}", function($id) use($handlerDevelopers)  {  
+      $handlerDevelopers->ChangeStatus($id);
+    });
+
+
 }
 
 
