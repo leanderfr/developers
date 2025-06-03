@@ -1190,6 +1190,7 @@ input:checked + .slider_language:before {
   align-items: center;
   height:100%;
   flex:1;
+  height: 40px;
 }
 
 .actionIcon:hover {
@@ -1375,7 +1376,8 @@ button.btnDELETE:hover {
   cursor: pointer;
   border-radius: 0.375rem;
   border-width: 2px;
-  border-color: transparent;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
   background-color: transparent;
   background-image: url("data:image/svg+xml,<svg fill='navy' width='34px' height='34px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'><path d='M4,23H20a1,1,0,0,0,1-1V6a1,1,0,0,0-.293-.707l-4-4A1,1,0,0,0,16,1H4A1,1,0,0,0,3,2V22A1,1,0,0,0,4,23ZM5,3H15.586L19,6.414V21H5Zm11,9a1,1,0,0,1-1,1H13v2a1,1,0,0,1-2,0V13H9a1,1,0,0,1,0-2h2V9a1,1,0,0,1,2,0v2h2A1,1,0,0,1,16,12Z'></path></g></svg>");
   background-position: center;
@@ -1419,7 +1421,8 @@ button.btnDELETE:hover {
   cursor: pointer;
   border-radius: 0.375rem;
   border-width: 2px;
-  border-color: transparent;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
   background-color: transparent;
   background-image: url("data:image/svg+xml,<svg width='34px' height='34px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' stroke='rgb(128, 128, 255)' fill='rgb(128, 128, 255)'  > <g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>/svg/ic-switch-on</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='ic-switch-on' fill-rule='nonzero' fill='rgb(128, 128, 255)'> <path d='M3,12 C3,14.2046438 4.78852545,16 6.9947834,16 L17.0052166,16 C19.2082844,16 21,14.209139 21,12 C21,9.79535615 19.2114745,8 17.0052166,8 L6.9947834,8 C4.79171562,8 3,9.790861 3,12 Z M1,12 C1,8.68773136 3.68570682,6 6.9947834,6 L17.0052166,6 C20.3154275,6 23,8.69016475 23,12 C23,15.3122686 20.3142932,18 17.0052166,18 L6.9947834,18 C3.68457248,18 1,15.3098352 1,12 Z M17,15 C15.3431458,15 14,13.6568542 14,12 C14,10.3431458 15.3431458,9 17,9 C18.6568542,9 20,10.3431458 20,12 C20,13.6568542 18.6568542,15 17,15 Z' id='Rectangle-75'> </path> </g> </g> </g></svg>");
   background-position: center;
@@ -1463,7 +1466,8 @@ button.btnDELETE:hover {
   cursor: pointer;
   border-radius: 0.375rem;
   border-width: 2px;
-  border-color: transparent;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
   background-color: transparent;
   background-image: url("data:image/svg+xml,<svg width='34px' height='34px' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='gray' transform='rotate(180)' stroke='gray'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <title>/svg/ic-switch-on</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'> <g id='ic-switch-on' fill-rule='nonzero' fill='gray'> <path d='M3,12 C3,14.2046438 4.78852545,16 6.9947834,16 L17.0052166,16 C19.2082844,16 21,14.209139 21,12 C21,9.79535615 19.2114745,8 17.0052166,8 L6.9947834,8 C4.79171562,8 3,9.790861 3,12 Z M1,12 C1,8.68773136 3.68570682,6 6.9947834,6 L17.0052166,6 C20.3154275,6 23,8.69016475 23,12 C23,15.3122686 20.3142932,18 17.0052166,18 L6.9947834,18 C3.68457248,18 1,15.3098352 1,12 Z M17,15 C15.3431458,15 14,13.6568542 14,12 C14,10.3431458 15.3431458,9 17,9 C18.6568542,9 20,10.3431458 20,12 C20,13.6568542 18.6568542,15 17,15 Z' id='Rectangle-75'> </path> </g> </g> </g></svg>");
   background-position: center;
@@ -1685,3 +1689,35 @@ div._doggy_3_english {
   background: url('http://ec2-54-233-183-5.sa-east-1.compute.amazonaws.com/images/thought_3_english.png') no-repeat top left;
   float: right;
 }
+
+.DatatableRow {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  line-height: 2.5rem;
+}
+
+.DatatableRow:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 237 204 / var(--tw-bg-opacity, 1));
+}
+
+/* selected= qdo usuario clicar na divTR, coloca em cor diferente e coloca sua respectiva coluna 'checkbox' como marcada */
+
+.DatatableRow_selected {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 194 102 / var(--tw-bg-opacity, 1));
+}
+
+.DatatableRow_selected:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 194 102 / var(--tw-bg-opacity, 1));
+}
+

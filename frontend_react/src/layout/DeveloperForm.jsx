@@ -57,10 +57,10 @@ function DeveloperForm( props )    {
   const putFocusInFirstInputText_AndOthersParticularitiesOfTheDeveloperForm = () => { 
     setTimeout(() => {
       $('#txtName').focus()    
+      props.setIsLoading(false)
     }, 500);
-
     makeWindowDraggable('divWINDOW_TOP', 'developerForm')
-    props.setIsLoading(false)
+    
   }
 
 
@@ -106,15 +106,14 @@ function DeveloperForm( props )    {
   // runs only once
   //*******************************************************************************************************
   const closeCrudForm = event => {
-    // so fecha se clicou no backdrop
+    // close only if the backdrop was clicked, not the form inside of it
     if (event.target === event.currentTarget) props.closeCrudForm()
   }
 
   return(
 
     <>
-      { record && 
-        <div className='backdropGray'  onClick={closeCrudForm}>     
+        <div className='backdropGray'  onClick={closeCrudForm} >     
 
           {/* -- car form container  */}
           <div  className="flex flex-col w-[95%] max-w-[1300px] overflow-hidden pt-8 "  id='developerForm'>
@@ -197,7 +196,7 @@ function DeveloperForm( props )    {
           </div> 
 
         </div>
-      }
+
 
 
     </>

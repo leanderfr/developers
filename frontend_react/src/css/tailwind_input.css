@@ -411,6 +411,7 @@ justify-content: center;
 align-items: center;
 height:100%;
 flex:1;
+height: 40px;
 }
 .actionIcon:hover { 
 border: solid 1px navy;
@@ -482,8 +483,8 @@ button.btnDELETE {
 
 .btnTABLE_NEW_RECORD {
     /* icon-new-record is defined in tailwind.config.js */
-    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
-        bg-icon-new-record  bg-center hover:border-gray-500 h-9;
+    @apply cursor-pointer w-[70px] box-border border-2 border-white  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-new-record  bg-center hover:border-gray-500 h-9 ;
 }
 
 .btnTABLE_ONLY_ACTIVE_RECORDS_ON {
@@ -495,21 +496,21 @@ button.btnDELETE {
 /* OFF= without border */
 .btnTABLE_ONLY_ACTIVE_RECORDS_OFF {
     /* icon-only-active-records is defined in  tailwind.config.js */
-    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
-        bg-icon-only-active-records   bg-center hover:border-gray-500 h-9;
+    @apply cursor-pointer w-[70px] box-border border-2 border-white  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-only-active-records   bg-center hover:border-gray-500 h-9 ;
 }
 
 .btnTABLE_ONLY_INACTIVE_RECORDS_ON {
     /* ON= with borders */
     /* icon-only-inactive-records is defined in  tailwind.config.js */
     @apply cursor-pointer w-[70px] box-border border-2 border-gray-500  rounded-md bg-transparent bg-no-repeat 
-        bg-icon-only-inactive-records  bg-center hover:border-gray-500 h-9;
+        bg-icon-only-inactive-records  bg-center hover:border-gray-500  h-9;
 }
 /* OFF= without borders */
 .btnTABLE_ONLY_INACTIVE_RECORDS_OFF {
     /* icon-only-inactive-records is defined in tailwind.config.js */
-    @apply cursor-pointer w-[70px] box-border border-2 border-transparent  rounded-md bg-transparent bg-no-repeat 
-        bg-icon-only-inactive-records  bg-center hover:border-gray-500 h-9;
+    @apply cursor-pointer w-[70px] box-border border-2 border-white  rounded-md bg-transparent bg-no-repeat 
+        bg-icon-only-inactive-records  bg-center hover:border-gray-500 h-9 ;
 }
 
 
@@ -675,3 +676,13 @@ div._doggy_3_english {
   background: url('http://ec2-54-233-183-5.sa-east-1.compute.amazonaws.com/images/thought_3_english.png') no-repeat top left;
   float: right;
 }
+
+.DatatableRow {
+    @apply flex flex-row w-full cursor-pointer items-center hover:bg-[#ffedcc] leading-10 ;
+}
+
+/* selected= qdo usuario clicar na divTR, coloca em cor diferente e coloca sua respectiva coluna 'checkbox' como marcada */
+.DatatableRow_selected {
+    @apply flex flex-row w-full cursor-pointer items-center bg-[#FFC266] hover:bg-[#FFC266];
+}
+
