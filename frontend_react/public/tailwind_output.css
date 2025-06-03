@@ -628,12 +628,20 @@ video {
   height: 200px;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .h-auto {
   height: auto;
 }
 
 .h-full {
   height: 100%;
+}
+
+.w-\[60px\] {
+  width: 60px;
 }
 
 .w-\[90\%\] {
@@ -646,6 +654,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[80px\] {
+  width: 80px;
+}
+
+.w-\[70px\] {
+  width: 70px;
 }
 
 .max-w-\[1300px\] {
@@ -1148,7 +1164,7 @@ input:checked + .slider_language:before {
   background-color: white;
   width: 100%;
   color: black;
-  height: 40px;
+  height: 60px;
   align-items: center;
 }
 
@@ -1157,7 +1173,7 @@ input:checked + .slider_language:before {
   flex-direction: row;
   width:100%;
   cursor: pointer;
-  line-height: 40px;
+  height: 60px;
 }
 
 .DatatableRow:hover {
@@ -1190,7 +1206,7 @@ input:checked + .slider_language:before {
   align-items: center;
   height:100%;
   flex:1;
-  height: 40px;
+  height: 60px;
 }
 
 .actionIcon:hover {
@@ -1696,7 +1712,7 @@ div._doggy_3_english {
   cursor: pointer;
   flex-direction: row;
   align-items: center;
-  line-height: 2.5rem;
+  line-height: 60px;
 }
 
 .DatatableRow:hover {
@@ -1720,4 +1736,24 @@ div._doggy_3_english {
   --tw-bg-opacity: 1;
   background-color: rgb(255 194 102 / var(--tw-bg-opacity, 1));
 }
+
+/* divTD_NOT_CLICKABLE nao possui borda que destaca, para que usuario nao tente clicar */
+
+.divTD_NOT_CLICKABLE {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-width: 1px;
+  border-color: transparent;
+  padding: 0.5rem;
+}
+
+.divTD_NOT_CLICKABLE:hover {
+  border-width: 1px;
+  border-color: transparent;
+}
+
 

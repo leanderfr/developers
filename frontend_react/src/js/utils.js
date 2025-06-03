@@ -119,3 +119,10 @@ make a div (window) be draggable
 export const makeWindowDraggable = (title_id, window_id) => {
   $(`#${window_id}`).draggable({ handle: `#${title_id}`, containment: '#backDrop' });
 }
+
+/***********************************************************************************************************************
+create random string to concatenate img src, to avoid browser cache
+***********************************************************************************************************************/
+export const forceImgRefresh = () => {
+  return new Date().getTime()
+}

@@ -1,8 +1,8 @@
 
-import {  SharedContext, backendUrl } from './Main.jsx';
+import {  SharedContext, backendUrl, imagesUrl } from './Main.jsx';
 import {  useContext, useEffect, Fragment } from 'react';
 import DeveloperForm from './DeveloperForm.jsx'
-import { improveToolTipLook, forceHideToolTip  } from '../js/utils.js';
+import { improveToolTipLook, forceHideToolTip, forceImgRefresh  } from '../js/utils.js';
 
 import '../tailwind_output.css'   
 
@@ -24,6 +24,7 @@ function Datatable( props ) {
   // dealing with Developers table
   if (_currentMenuItem === 'itemMenuDevelopers')  
     columns.push({ fieldname: "id", width: "20%", title: 'Id', id: 1 },
+                { fieldname: "picture", width: "calc(80% - 150px)", title: _expressions.field_picture, id: 2} ,
                 { fieldname: "name", width: "calc(80% - 150px)", title: _expressions.field_name, id: 2} )
 
   // last columns, actions (edit, delete, etc)
@@ -252,21 +253,31 @@ function Datatable( props ) {
                     return( 
                       <Fragment key={`frag${record.id}${col.id}`} >
                           {/* the last column (j===length-1) shows the action buttons */}
-                          {j===length-1 ? (
+                          {j===length-1 && 
                                 <div  className='actionColumn' style= {{ width: col.width}}  >
                                     <div className='actionIcon' onClick={ () => Crud('PATCH', record.id) } ><img alt='' src='images/edit.svg' /></div>
                                     <div className='actionIcon' onClick={ () => Crud('DELETE', record.id) }><img alt='' src='images/delete.svg' /></div>
                                     <div className='actionIcon' onClick={ () => Crud('STATUS', record.id) }><img alt='' src='images/activate.svg' /></div>
-                                </div>  ) : 
+                                </div>  
+                          } 
 
-                              (<div style={{width: col.width, paddingLeft: '5px'}}> {record[col.fieldname]}  </div>) 
+                          {j!==length-1 && col.fieldname==='picture' &&  
+                            <div className='divTD_NOT_CLICKABLE' style= {{ width: col.width}} > 
+                              <img src={imagesUrl + record[col.fieldname] + '?'+forceImgRefresh() } className="w-[70px] h-[60px]" alt="img" />
+                            </div>  }
+
+                          {j!==length-1 && col.fieldname!=='picture' &&  
+                                <div style={{width: col.width, paddingLeft: '5px'}}> {record[col.fieldname]}  </div> 
                           }
+  
                       </Fragment>
                     )
-                })}
+                  }) 
+                }
                 </div>
               )
-        }) }
+          }) 
+        }
     </div>
 
     {/* if the developers edition was asked */}

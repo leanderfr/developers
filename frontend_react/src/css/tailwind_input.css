@@ -372,7 +372,7 @@ background-color:  #FFC266
   background-color: white;
   width: 100%;
   color: black;
-  height: 40px;
+  height: 60px;
   align-items: center;
 }
 
@@ -381,7 +381,7 @@ background-color:  #FFC266
   flex-direction: row;
   width:100%;
   cursor: pointer;
-  line-height: 40px;
+  height: 60px;
 }
 .DatatableRow:hover {
 background-color:  #FFC266
@@ -411,7 +411,7 @@ justify-content: center;
 align-items: center;
 height:100%;
 flex:1;
-height: 40px;
+height: 60px;
 }
 .actionIcon:hover { 
 border: solid 1px navy;
@@ -678,11 +678,17 @@ div._doggy_3_english {
 }
 
 .DatatableRow {
-    @apply flex flex-row w-full cursor-pointer items-center hover:bg-[#ffedcc] leading-10 ;
+    @apply flex flex-row w-full cursor-pointer items-center hover:bg-[#ffedcc] leading-[60px] ;
 }
 
 /* selected= qdo usuario clicar na divTR, coloca em cor diferente e coloca sua respectiva coluna 'checkbox' como marcada */
 .DatatableRow_selected {
     @apply flex flex-row w-full cursor-pointer items-center bg-[#FFC266] hover:bg-[#FFC266];
 }
+
+/* divTD_NOT_CLICKABLE nao possui borda que destaca, para que usuario nao tente clicar */
+.divTD_NOT_CLICKABLE {
+    @apply border-[1px] border-transparent h-full items-center flex p-2 hover:border-[1px] hover:border-transparent truncate;
+}
+
 
