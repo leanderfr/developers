@@ -15,7 +15,7 @@ import $ from 'jquery'
 import 'jquery-ui-bundle';
 import 'jquery-ui-bundle/jquery-ui.min.css';
 
-import { prepareLoadingAnimation, preparePuppyIcon  } from '../js/utils.js';
+import { slidingMessage, prepareLoadingAnimation, preparePuppyIcon  } from '../js/utils.js';
 
 export const SharedContext = createContext();
 
@@ -93,7 +93,61 @@ function Main() {
   useEffect( () => {      
       prepareLoadingAnimation()  
       preparePuppyIcon()
+
+      // handle keys
+      document.addEventListener('keydown', onKeyDown);
+
+      return function cleanup() {
+        document.removeEventListener('keydown', onKeyDown);
+      }
+
+
   }, [])
+
+
+/************************************************************************************************************************************************************
+ handle key pressed throughout the entire application
+************************************************************************************************************************************************************/
+
+const onKeyDown = (e) =>  {
+
+  // if user presses Enter or arrow down/up, backs or forwards the focus to the next/previous field
+  if ( (e.which == 13 || e.which == 38 || e.which == 40)  && $('.text_formFieldValue').is(':focus') )   { 
+
+        // I had to invent the 'sequence' property, because VITE is bugging about tabIndex
+        let tab =  $(':focus').attr("sequence"); 
+        if (e.which==13 || e.which == 40)  tab++;
+        else if (e.which==38)  tab--;
+
+        e.preventDefault()
+
+        // put the focus in the next/previous field based on the pre determined 'sequence' property
+        $("[sequence='"+tab+"']").focus();          
+  }
+
+  // if user presses Enter when the  search box of Datatable.jsx is focused and fullfilled, triggers the search
+  if (e.which === 13 && $('#txtTableSearchText').is(':focus') )   { 
+    if (  $('#txtTableSearchText').val().trim().length<3 ) 
+      slidingMessage(getExpressions.current.searchbox_minimum, 2000)         
+    else 
+      $('#triggerSearchBox').trigger('click')
+  } 
+    
+  
+  // if user presses F2 or Esc, being any form edit screen opened
+  if (e.which == 27 || e.which == 113)   { 
+        let editionForm = typeof $('#developerForm').attr("id")!='undefined' 
+        
+        // triggers close button
+        if (editionForm)  {
+          if (e.which == 27)   $('#btnCLOSE').trigger('click')
+
+          // 'F2= save'
+          if (e.which == 113)   $('#btnSAVE').trigger('click')   // f2 was pressed
+        }
+  }
+}
+
 
 
   //************************************************************************************************************

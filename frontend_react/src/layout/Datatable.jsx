@@ -24,11 +24,11 @@ function Datatable( props ) {
   // dealing with Developers table
   if (_currentMenuItem === 'itemMenuDevelopers')  
     columns.push({ fieldname: "id", width: "20%", title: 'Id', id: 1 },
-                { fieldname: "picture", width: "calc(80% - 150px)", title: _expressions.field_picture, id: 2} ,
-                { fieldname: "name", width: "calc(80% - 150px)", title: _expressions.field_name, id: 2} )
+                { fieldname: "picture", width: "30%", title: _expressions.field_picture, id: 2} ,
+                { fieldname: "name", width: "calc(50% - 150px)", title: _expressions.field_name, id: 3} )
 
   // last columns, actions (edit, delete, etc)
-  columns.push( {name: 'actions', width: '150px', title: '', id: 3} )
+  columns.push( {name: 'actions', width: '150px', title: '', id: 4} )
 
   // records fetched from the current table (based on _currentMenuItem)
   let [records, setRecords, getRecords] = useState(null)
@@ -62,9 +62,27 @@ function Datatable( props ) {
           default:
         }
         
-        let status = getCurrentStatus.current
+        // when the 'json' parameter is specified, no need to inform the country, the backend will return from both (__no_matter__)
 
-        fetch(`${backendUrl}/${resourceFetch}/${status}`, { method: "GET" })
+        // if user fullfilled searchbox, consider it
+        // what field will be searched in the backend depends on the table, the backend decides
+
+        // if a text is specified to search for, the status will be ignored in the backend
+        let stringSearch = $.trim( $('#txtTableSearchText').val() )
+
+        let route
+        if ( resourceFetch === 'expressions')   
+          route = `${backendUrl}/expressions/json/__no_matter__/${getCurrentStatus.current}`
+
+        else 
+          route = `${backendUrl}/${resourceFetch}/${getCurrentStatus.current}` 
+
+        if ( stringSearch!='' )    {
+          route += `/${stringSearch}`
+          setFilterApplied(true)  // enable reset filter button
+        }
+
+        fetch(route, { method: "GET" })
         .then((response) => response.json())
         .then((data) => {
           props.setIsLoading(false)
@@ -114,6 +132,7 @@ function Datatable( props ) {
   const clearFilter = () => {
     $('#txtTableSearchText').val('');
     setFilterApplied(false)
+    setRecords(null)  
   }
 
   //*****************************************************************************
@@ -172,7 +191,7 @@ function Datatable( props ) {
 
             {/* -- button to reset filter --*/}
             <div id='btnResetTextTableFilter'  title={_expressions.reset_filter} 
-                className={`putPrettierTooltip ${filterApplied.current ? 'btnTABLE_CANCEL_FILTER_ACTIVE' : 'btnTABLE_CANCEL_FILTER_INACTIVE'}` }
+                className={`putPrettierTooltip ${getFilterApplied.current ? 'btnTABLE_CANCEL_FILTER_ACTIVE' : 'btnTABLE_CANCEL_FILTER_INACTIVE'}` }
                 onClick={ () => {forceHideToolTip();clearFilter()} } >
             </div> 
           
@@ -234,7 +253,7 @@ function Datatable( props ) {
     {/* loop to display each column based on the current table */}
     <div className="DatatableHeader">
         {columns.map(function (column)  {     
-          return( <div key={column.id} style={{width: column.width }}>{column.title}  </div> );                 
+          return( <div key={`col_${column.id}`} style={{width: column.width }}>{column.title}  </div> );                 
         })}
     </div>          
 
@@ -251,7 +270,7 @@ function Datatable( props ) {
                 /* display each column of the record  */
                 columns.map(function (col, j, {length}) {
                     return( 
-                      <Fragment key={`frag${record.id}${col.id}`} >
+                      <Fragment key={`frag${record.id}${col.id}`}  >
                           {/* the last column (j===length-1) shows the action buttons */}
                           {j===length-1 && 
                                 <div  className='actionColumn' style= {{ width: col.width}}  >
