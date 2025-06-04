@@ -23,7 +23,7 @@ function DeveloperForm( props )    {
   /********************************************************************************************************************************************************
   user changes the car image, updates img src in the preview div
   *******************************************************************************************************************************************************/
-  const carImageChanged = async () =>  { 
+  const pictureChanged = async () =>  { 
   $('#developerPicture').attr('src', window.URL.createObjectURL( document.getElementById('devPicture').files[0] )) 
   }
 
@@ -261,7 +261,7 @@ function DeveloperForm( props )    {
               </div>
 
               {/* -- upload button, hidden and will be 'clicked' programtically when user clicks the upload button -- */}
-              <input type="file" accept="image/png" style={{width: '0px', height: '0px', overflow: 'hidden'}}  onChange={carImageChanged} id="devPicture" />
+              <input type="file" accept="image/png" style={{width: '0px', height: '0px', overflow: 'hidden'}}  onChange={pictureChanged} id="devPicture" />
 
             </div> 
 

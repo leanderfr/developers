@@ -691,4 +691,11 @@ div._doggy_3_english {
     @apply border-[1px] border-transparent h-full items-center flex p-2 hover:border-[1px] hover:border-transparent truncate;
 }
 
+.actionIconNull { 
+border: solid 1px transparent;
+display: flex;
+height:100%;
+flex:1;
+}
+
 

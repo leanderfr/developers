@@ -2,7 +2,7 @@
 import {  SharedContext, backendUrl, imagesUrl } from './Main.jsx';
 import {  useContext, useEffect, Fragment } from 'react';
 import DeveloperForm from './DeveloperForm.jsx'
-import { improveToolTipLook, forceHideToolTip, forceImgRefresh  } from '../js/utils.js';
+import {  slidingMessage, improveToolTipLook, forceHideToolTip, forceImgRefresh  } from '../js/utils.js';
 
 import '../tailwind_output.css'   
 
@@ -120,6 +120,43 @@ function Datatable( props ) {
     setCalledCrudForm(true)
   }
 
+
+
+//***************************************************************************
+// user click in a given record to change its status (active/inactive)
+//*************************************************************************** 
+async function changeStatus (id) {
+
+  let type = ''
+  switch (_currentMenuItem) {
+    case 'itemMenuDevelopers':
+      type = 'developer'
+      break;
+    default:
+  }
+
+  let route = `${backendUrl}/${type}/status/${id}`   
+
+  props.setIsLoading(true)  
+
+  await fetch(route, {method: 'PATCH'})
+
+  .then(response => {
+    if (!response.ok) {
+      return response.text().then(text => {throw new Error(`HTTP error! ${response.status}` + text)})
+    }
+    return response.text()
+  })
+  .then((data) => {
+    slidingMessage(_expressions.status_changed, 3000)         
+    setRecords(null)
+  })
+  .catch((error) => {
+    props.setIsLoading(true)
+    slidingMessage('Error= '+error, 3000)        
+  })  
+}
+
   //************************************************************************************************************
   // close displayed CRUD form
   //************************************************************************************************************  
@@ -162,7 +199,7 @@ function Datatable( props ) {
 
 
       <div className='DatatableTitle' >
-        <div className='flex flex-row w-full'>
+        <div className='flex flex-row '>
 
             {/* --  search box -- */}
             <div className="flex flex-col" >  
@@ -197,51 +234,58 @@ function Datatable( props ) {
           
         </div>
 
-        {/* -- action buttons --*/}
-        <div className=' flex flex-row items-start  h-full gap-5 pt-3 '>
+        <div className=' flex flex-col'>
+              {/* -- action buttons --*/}
+              <div className=' flex flex-row items-start  h-full gap-5 pt-3 '>
 
-          {/* show/hide active records --*/}
-          { getCurrentStatus.current==='active'  ? 
-            (
-              <div className='btnTABLE_ONLY_ACTIVE_RECORDS_ON putPrettierTooltip' 
-                  title={_expressions.only_active} 
-                  onClick = {() => {forceHideToolTip();setCurrentStatus('all');setRecords(null)}}
-                  aria-hidden="true">
-              </div>   
-            ) :
-            (
-              <div className='btnTABLE_ONLY_ACTIVE_RECORDS_OFF putPrettierTooltip' 
-                   title={_expressions.only_active}
-                   onClick={ () => {forceHideToolTip();setCurrentStatus('active');setRecords(null)} }
-                   aria-hidden="true">
-              </div>   
-            )
-          }
+                {/* show/hide active records --*/}
+                { getCurrentStatus.current==='active'  ? 
+                  (
+                    <div className='btnTABLE_ONLY_ACTIVE_RECORDS_ON putPrettierTooltip' 
+                        title={_expressions.only_active} 
+                        onClick = {() => {forceHideToolTip();setCurrentStatus('all');setRecords(null)}}
+                        aria-hidden="true">
+                    </div>   
+                  ) :
+                  (
+                    <div className='btnTABLE_ONLY_ACTIVE_RECORDS_OFF putPrettierTooltip' 
+                        title={_expressions.only_active}
+                        onClick={ () => {forceHideToolTip();setCurrentStatus('active');setRecords(null)} }
+                        aria-hidden="true">
+                    </div>   
+                  )
+                }
 
-          {/* show/hide inactive records --*/}
-          { getCurrentStatus.current==='inactive'  ?
-            (
-              <div className='btnTABLE_ONLY_INACTIVE_RECORDS_ON putPrettierTooltip' 
-                  title={_expressions.only_inactive} 
-                  onClick = {() => {forceHideToolTip();setCurrentStatus('all');setRecords(null)}}
-                  aria-hidden="true">
-              </div>   
-            ) :
-            (
-              <div className='btnTABLE_ONLY_INACTIVE_RECORDS_OFF putPrettierTooltip' 
-                   title={_expressions.only_inactive}
-                   onClick={ () => {forceHideToolTip();setCurrentStatus('inactive');setRecords(null)} }
-                   aria-hidden="true">
-              </div>   
-            )
-          }
+                {/* show/hide inactive records --*/}
+                { getCurrentStatus.current==='inactive'  ?
+                  (
+                    <div className='btnTABLE_ONLY_INACTIVE_RECORDS_ON putPrettierTooltip' 
+                        title={_expressions.only_inactive} 
+                        onClick = {() => {forceHideToolTip();setCurrentStatus('all');setRecords(null)}}
+                        aria-hidden="true">
+                    </div>   
+                  ) :
+                  (
+                    <div className='btnTABLE_ONLY_INACTIVE_RECORDS_OFF putPrettierTooltip' 
+                        title={_expressions.only_inactive}
+                        onClick={ () => {forceHideToolTip();setCurrentStatus('inactive');setRecords(null)} }
+                        aria-hidden="true">
+                    </div>   
+                  )
+                }
 
-          {/* -- new record --*/}
-          <div className='btnTABLE_NEW_RECORD putPrettierTooltip' 
-            title={_expressions.add_record} 
-            aria-hidden="true"
-            onClick={ () => Crud('POST') }   >
-          </div>   
+                {/* -- new record --*/}
+                <div className='btnTABLE_NEW_RECORD putPrettierTooltip' 
+                  title={_expressions.add_record} 
+                  aria-hidden="true"
+                  onClick={ () => Crud('POST') }   >
+                </div>   
+              </div>
+
+              {/* legend */}
+              <div style = {{  paddingRight: '10px', fontSize: '14px', display:'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                  <div style={{ paddingTop: '10px'}}>{ _expressions.legend } : <span style={{ backgroundColor: 'red'}}>&nbsp;&nbsp;&nbsp;</span>= {_expressions.inactive }</div>
+              </div>
 
         </div>
       </div>
@@ -272,21 +316,32 @@ function Datatable( props ) {
                     return( 
                       <Fragment key={`frag${record.id}${col.id}`}  >
                           {/* the last column (j===length-1) shows the action buttons */}
-                          {j===length-1 && 
-                                <div  className='actionColumn' style= {{ width: col.width}}  >
+                          {j===length-1 && record.active==1 &&
+                                <div  className='actionColumn' style= {{ width: col.width}} >
                                     <div className='actionIcon' onClick={ () => Crud('PATCH', record.id) } ><img alt='' src='images/edit.svg' /></div>
                                     <div className='actionIcon' onClick={ () => Crud('DELETE', record.id) }><img alt='' src='images/delete.svg' /></div>
-                                    <div className='actionIcon' onClick={ () => Crud('STATUS', record.id) }><img alt='' src='images/activate.svg' /></div>
+                                    <div className='actionIcon' onClick={ () => changeStatus(record.id) }><img alt='' src='images/activate.svg' /></div>
                                 </div>  
                           } 
 
+                          {j===length-1 && record.active==0 &&
+                                <div  className='actionColumn' style= {{width: col.width}}  >
+                                    <div className='actionIconNull'>&nbsp;</div>
+                                    <div className='actionIconNull'>&nbsp;</div>
+                                    <div className='actionIcon' onClick={ () => changeStatus(record.id) }><img alt='' src='images/deactivate.svg' /></div>
+                                </div>  
+                          } 
+
+
+                          {/* some image being displayed */}
                           {j!==length-1 && col.fieldname==='picture' &&  
                             <div className='divTD_NOT_CLICKABLE' style= {{ width: col.width}} > 
                               <img src={imagesUrl + record[col.fieldname] + '?'+forceImgRefresh() } className="w-[70px] h-[60px]" alt="img" />
                             </div>  }
 
-                          {j!==length-1 && col.fieldname!=='picture' &&  
-                                <div style={{width: col.width, paddingLeft: '5px'}}> {record[col.fieldname]}  </div> 
+                          {/* not image being displayed, a commom text */}
+                          {j!==length-1 && col.fieldname!=='picture' && 
+                                <div className={record.active==1 ? 'text-black' : 'text-red-500'}   style={{width: col.width, paddingLeft: '5px'}}> {record[col.fieldname]}  </div> 
                           }
   
                       </Fragment>
@@ -308,7 +363,7 @@ function Datatable( props ) {
                 closeCrudForm = {closeCrudForm}
                 setRecords = {setRecords}
                 setIsLoading={props.setIsLoading}
-                getis={props.setIsLoading} juca
+                getis={props.setIsLoading} 
             />
     }
     
